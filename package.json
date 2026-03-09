@@ -29,12 +29,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/udbc/front-end"
+    "url": "https://github.com/abdvswmdr/frontend-repo"
   },
   "contributors": [
-    "Ian Crosby <ian.daniel.crosby@gmail.com>",
-    "Carlos León <mail@carlosleon.info> (carlosleon.info)", 
-    "Gourav SHah <gouravshah@initcron.org>"
+    "Abdulswamad Rama Salim <abdvswmdr@gmail.com>"
   ],
   "license": "MIT",
   "dependencies": {
