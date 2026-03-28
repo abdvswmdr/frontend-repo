@@ -29,7 +29,10 @@ pipeline {
 	stage('package') {
 	    steps {
 		echo 'this is the package job'
-		sh 'NODE_OPTIONS=--dns-result-order=ipv4first npm run package'
+		sh '''
+                NODE_OPTIONS=--dns-result-order=ipv4first npm install
+                NODE_OPTIONS=--dns-result-order=ipv4first npm run package
+                '''
 		sleep 7
 		archiveArtifacts '**/distribution/*.zip'
 	    }

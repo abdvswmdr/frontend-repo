@@ -1,7 +1,7 @@
 {
-  "name": "mogambo-front-end",
+  "name": "soqoni-front-end",
   "version": "0.0.1",
-  "description": "Front end for mogambo  application.",
+  "description": "Front end for soqoni application.",
   "main": "server.js",
   "config": {
     "service": "FRONTEND",
