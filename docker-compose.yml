@@ -1,0 +1,6 @@
+services:
+  frontend:
+    build: .
+    image: abdvswmdr/soqonifrontend:v1
+    ports:
+      - 8079
