@@ -38,6 +38,22 @@ pipeline {
 	    }
 	}
 
+	stage('docker') {
+	    steps {
+		withCredentials([usernamePassword(
+		    credentialsId: 'dockerhub-creds',
+		    usernameVariable: 'DOCKERHUB_USER',
+		    passwordVariable: 'DOCKERHUB_PASS'
+		)]) {
+		    sh '''
+                    docker build -t abdvswmdr/soqonifrontend:latest .
+                    echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
+                    docker push abdvswmdr/soqonifrontend:latest
+                    '''
+		}
+	    }
+	}
+
     }
     
     post {
