@@ -13,8 +13,14 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 #top {
     background: #0a2e6e !important;
     color: #e8edf8 !important;
-    padding: 7px 0 !important;
+    padding: 6px 0 !important;
     font-size: 13px;
+    white-space: nowrap;
+}
+#top .offer {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 #top a, #top .offer a { color: #c9d6f0 !important; }
 #top .btn-success {
@@ -37,6 +43,8 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     font-weight: 500;
     font-size: 14px;
     padding: 20px 16px;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li.active > a {
@@ -166,7 +174,10 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     margin: 8px auto 0;
     border-radius: 2px;
 }
-#hot { background: #f5f7fa; padding: 0 0 36px !important; }
+#hot { background: #f5f7fa; padding: 0 0 20px !important; }
+#hot .container { padding-bottom: 0; }
+.product-slider.owl-carousel { margin-bottom: 0 !important; }
+.owl-controls { margin-top: 12px !important; }
 
 /* ── Advantages section ─────────────────────────────── */
 #advantages { background: #fff; padding: 28px 0 !important; border-bottom: 1px solid #e8edf5; }
@@ -268,16 +279,27 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 /* Product text area */
 .product .text {
     padding: 10px 14px 14px;
-    min-height: 100px;
+    min-height: unset;
+    text-align: left !important;
 }
 .product .text h3 {
     font-size: 13px;
-    font-weight: 500;
-    margin: 4px 0 6px;
+    font-weight: 400;
+    margin: 4px 0 4px;
     line-height: 1.4;
     color: #1a2a4a;
+    text-align: left !important;
+    /* prevent overflow clipping product names */
+    overflow: visible;
+    white-space: normal;
+    height: auto;
+    max-height: none;
 }
-.product .text h3 a { color: #1a2a4a !important; }
+.product .text h3 a {
+    color: #1a2a4a !important;
+    text-align: left !important;
+    font-weight: 400;
+}
 .product .text h3 a:hover { color: #0a5bbf !important; }
 
 /* Star ratings */
@@ -286,18 +308,20 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     font-size: 12px;
     letter-spacing: 1px;
     margin-bottom: 2px;
+    text-align: left !important;
 }
 
-/* Price — */
+/* Price */
 .product .text .price,
 .product .text p.price {
     color: #e8632a !important;
-    font-size: 16px !important;
-    font-weight: 700 !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
     margin: 4px 0 10px !important;
     background: transparent !important;
     border: none !important;
     padding: 0 !important;
+    text-align: left !important;
 }
 
 /* Buttons */
@@ -407,9 +431,38 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     margin: 0 !important;
 }
 
-/* ── Slider ─────────────────────────────────────────── */
-#main-slider { margin-bottom: 0; border-radius: 6px; overflow: hidden; }
-.owl-carousel .owl-wrapper-outer { border-radius: 6px; }
+/* ── Slider — full-width, break out of .container padding ── */
+#content > div.container:first-child {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+#content > div.container:first-child .col-md-12 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+#main-slider {
+    margin-bottom: 0;
+    overflow: hidden;
+}
+#main-slider .item a {
+    display: block;
+    max-height: 340px;
+    overflow: hidden;
+}
+#main-slider .item img {
+    width: 100%;
+    max-height: 340px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+/* ── Carousel item spacing ───────────────────────────── */
+.owl-carousel .owl-item { padding: 0 6px; }
+#hot-slider.product-slider .owl-item { padding: 0 5px; }
+.product-slider { margin: 0 -5px; }
 
 /* ── Pagination ─────────────────────────────────────── */
 .pagination > li > a { color: #0a5bbf; border-color: #d0d8e8; }
