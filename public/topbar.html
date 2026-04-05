@@ -1,10 +1,20 @@
 <!-- *** TOPBAR ***
 _________________________________________________________ -->
+<div id="announcement-bar" style="display:none;">
+    <div class="container" style="position:relative;">
+        <span id="announcement-text">
+            <strong>Free shipping</strong> on orders over KSh 5,000 &nbsp;·&nbsp;
+            Kenya's premier embedded systems store &nbsp;·&nbsp;
+            <a href="category.html" style="color:#fff;text-decoration:underline;">Shop new arrivals</a>
+        </span>
+        <button id="announcement-close" onclick="dismissAnnouncement()" title="Dismiss">&#x2715;</button>
+    </div>
+</div>
 <div id="top">
     <div class="container">
         <div class="col-md-6 offer" data-animate="fadeInDown">
-            <a href="#" class="btn btn-success btn-sm"
-               data-animate-hover="shake">App Version 5.0 </a> <a href="#"> This is a demo store. Do not transact. </a>
+            <a href="category.html" class="btn btn-success btn-sm"
+               data-animate-hover="shake">New Arrivals</a> <a href="category.html"> Kenya's premier embedded systems store — Shop the latest boards &amp; modules</a>
         </div>
         <div class="col-md-6" data-animate="fadeInDown">
             <ul class="menu">
@@ -145,4 +155,41 @@ _________________________________________________________ -->
         }
 
     })
+
+    // Announcement bar — show unless user dismissed
+    function dismissAnnouncement() {
+        localStorage.setItem('announcementDismissed', '1');
+        document.getElementById('announcement-bar').style.display = 'none';
+    }
+
+    if (localStorage.getItem('announcementDismissed') !== '1') {
+        document.getElementById('announcement-bar').style.display = 'block';
+    }
 </script>
+
+<style>
+#announcement-bar {
+    background: #c0392b;
+    color: #fff;
+    text-align: center;
+    padding: 7px 0;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+}
+#announcement-bar a { color: #fff; }
+#announcement-close {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.8);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+}
+#announcement-close:hover { color: #fff; }
+</style>

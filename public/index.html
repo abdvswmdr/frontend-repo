@@ -185,31 +185,21 @@ _________________________________________________________ -->
             if (data != null) {
                 $.each(data, function (index, element) {
                     $('#hot-slider').append(
-                            '<div class="item">\
-                            <div class="product">\
-                                <div class="flip-container">\
-                                    <div class="flipper">\
-                                        <div class="front">\
-                                            <a href="detail.html?id=' + element.id + '">\
-                                            <img src="' + element.imageUrl[0] + '" alt="" class="img-responsive">\
-                                        </a>\
-                                    </div>\
-                                    <div class="back">\
-                                        <a href="detail.html?id=' + element.id + '">\
-                                            <img src="' + element.imageUrl[1] + '" alt="" class="img-responsive">\
-                                        </a>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                            <a href="detail.html?id=' + element.id + '" class="invisible">\
-                                <img src="' + element.imageUrl[0] + '" alt="" class="img-responsive">\
-                            </a>\
-                            <div class="text">\
-                                <h3><a href="detail.html?id=' + element.id + '">' + element.name + '</a></h3>\
-                                <p class="price">$' + element.price + '</p>\
-                            </div>\
-                        </div>\
-                    </div>'
+                        '<div class="item">' +
+                        '<div class="product">' +
+                        '<div class="product-badge">BEST SELLER</div>' +
+                        '<div class="product-img-wrap">' +
+                        '<a href="detail.html?id=' + element.id + '">' +
+                        '<img src="' + element.imageUrl[0] + '" alt="' + element.name + '">' +
+                        '</a>' +
+                        '</div>' +
+                        '<div class="text">' +
+                        '<div class="product-stars">★★★★★</div>' +
+                        '<h3><a href="detail.html?id=' + element.id + '">' + element.name + '</a></h3>' +
+                        '<p class="price">$' + element.price + '</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>'
                     );
                 });
                 $('.product-slider').owlCarousel({
