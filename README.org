@@ -1,20 +1,4 @@
-#+HTML: <a href="LICENSE"><img alt="License: GPLv3" src="https://img.shields.io/badge/License-GPLv3-blue.svg"></a> &nbsp; <img alt="Ansible" src="https://img.shields.io/badge/Ansible-2.x-EE0000?logo=ansible&logoColor=white"> &nbsp; <img alt="Docker" src="https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white"> &nbsp; <img alt="Jenkins" src="https://img.shields.io/badge/Jenkins-2.556-D24939?logo=jenkins&logoColor=white"> &nbsp; <img alt="Kubernetes" src="https://img.shields.io/badge/Kubernetes-Minikube-326CE5?logo=kubernetes&logoColor=white"> &nbsp; <img alt="Istio" src="https://img.shields.io/badge/Istio-1.29-466BB0?logo=istio&logoColor=white">
-
-#+BEGIN_EXPORT html
-<p align="left">
-  <a href="LICENSE"><img alt="License: GPLv3" src="https://img.shields.io/badge/License-GPLv3-blue.svg"></a>
-  &nbsp;
-  <img alt="Ansible" src="https://img.shields.io/badge/Ansible-2.x-EE0000?logo=ansible&logoColor=white">
-  &nbsp;
-  <img alt="Docker" src="https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white">
-  &nbsp;
-  <img alt="Jenkins" src="https://img.shields.io/badge/Jenkins-2.556-D24939?logo=jenkins&logoColor=white">
-  &nbsp;
-  <img alt="Kubernetes" src="https://img.shields.io/badge/Kubernetes-Minikube-326CE5?logo=kubernetes&logoColor=white">
-  &nbsp;
-  <img alt="Istio" src="https://img.shields.io/badge/Istio-1.29-466BB0?logo=istio&logoColor=white">
-</p>
-#+END_EXPORT
+#+HTML: <p><a href="LICENSE"><img alt="License: GPLv3" src="https://img.shields.io/badge/License-GPLv3-blue.svg"></a> &nbsp; <img alt="Ansible" src="https://img.shields.io/badge/Ansible-2.x-EE0000?logo=ansible&logoColor=white"> &nbsp; <img alt="Docker" src="https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white"> &nbsp; <img alt="Jenkins" src="https://img.shields.io/badge/Jenkins-2.556-D24939?logo=jenkins&logoColor=white"> &nbsp; <img alt="Kubernetes" src="https://img.shields.io/badge/Kubernetes-Minikube-326CE5?logo=kubernetes&logoColor=white"> &nbsp; <img alt="Istio" src="https://img.shields.io/badge/Istio-1.29-466BB0?logo=istio&logoColor=white"></p>
 
 * Soqoni — Infrastructure
 
