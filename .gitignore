@@ -4,4 +4,7 @@
 # Ignore coverage reports
 /coverage
 
+README.html
+.markdown-preview.html
+
 .idea

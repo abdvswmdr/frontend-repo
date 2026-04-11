@@ -1,0 +1,35 @@
+@startuml c3-frontend-component
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include FONTAWESOME/exchange_alt.puml
+!include FONTAWESOME/id_card.puml
+!include FONTAWESOME/folder_open.puml
+!include FONTAWESOME/route.puml
+!include <logos/nodejs>
+!include <logos/go>
+!include <logos/java>
+
+LAYOUT_WITH_LEGEND()
+title soqonifrontend — Component Diagram
+
+Person(customer, "Customer", "Web browser")
+System_Ext(catalogue_svc, "soqonicatalogue", "Go catalogue microservice", $sprite="go")
+System_Ext(carts_svc, "soqonicart", "Spring Boot cart microservice", $sprite="java")
+
+Container_Boundary(frontend, "soqonifrontend (Node.js 20 / Express)") {
+    Component(static, "Static File Server", "Express static()", "Serves HTML, CSS, JS, images from public/\nProduct images, stylesheets, client-side scripts", $sprite="folder_open")
+    Component(session, "Session Middleware", "express-session", "Assigns customerId UUID per browser session\nRequired by cart service — added as path header", $sprite="id_card")
+    Component(routes, "Page Routes", "Express Router", "GET / — index page\nGET /basket — cart page\nGET /catalogue — product listing", $sprite="route")
+    Component(catalogue_proxy, "Catalogue Proxy", "http-proxy-middleware", "Forwards /catalogue/* to soqonicatalogue ClusterIP:80", $sprite="exchange_alt")
+    Component(cart_proxy, "Cart Proxy", "http-proxy-middleware", "Forwards /carts/* with customerId to soqonicart ClusterIP:80", $sprite="exchange_alt")
+}
+
+Rel(customer, static, "Loads UI assets", "HTTP")
+Rel(customer, routes, "Navigates pages", "HTTP")
+Rel(session, cart_proxy, "Injects customerId into request")
+Rel(routes, catalogue_proxy, "Proxies /catalogue requests")
+Rel(routes, cart_proxy, "Proxies /carts requests")
+Rel(catalogue_proxy, catalogue_svc, "GET /catalogue, /catalogue/{id}", "HTTP ClusterIP")
+Rel(cart_proxy, carts_svc, "GET/POST/DELETE /carts/{id}/items", "HTTP ClusterIP")
+
+@enduml
