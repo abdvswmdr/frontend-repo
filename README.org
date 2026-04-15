@@ -30,7 +30,7 @@ mesh and monitoring.
 
 ** Architecture
 
-#+attr_html: :width 1500px :align center :alt "Soqoni architecture diagram"
+#+attr_html: :width 1200px :align center :alt "Soqoni architecture diagram"
 [[file:docs/c3-frontend-component.png]]
 
 ** Stack
