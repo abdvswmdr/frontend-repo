@@ -29,49 +29,70 @@ _________________________________________________________ -->
                                     <div class="col-sm-3">
                                         <h5>Platform</h5>
                                         <ul>
-                                            <li>
-                                                <a href="category.html?tags=Arduino">Arduino</a>
-                                            </li>
-                                            <li>
-                                                <a href="category.html?tags=Raspberry+Pi">Raspberry Pi</a>
-                                            </li>
-                                            <li>
-                                                <a href="category.html?tags=Espressif">Espressif</a>
-                                            </li>
+                                            <li><a href="category.html?tags=Arduino">Arduino</a></li>
+                                            <li><a href="category.html?tags=Raspberry+Pi">Raspberry Pi</a></li>
+                                            <li><a href="category.html?tags=Espressif">Espressif (ESP32)</a></li>
+                                            <li><a href="category.html?tags=STM32">STM32</a></li>
+                                            <li><a href="category.html?tags=BBC+micro:bit">BBC micro:bit</a></li>
                                         </ul>
-                                    </div>
-                                    <div class="col-sm-3">
                                         <h5>Type</h5>
                                         <ul>
-                                            <li>
-                                                <a href="category.html?tags=Microcontroller">Microcontroller</a>
-                                            </li>
-                                            <li>
-                                                <a href="category.html?tags=SBC">SBC</a>
-                                            </li>
-                                        </ul>
-                                        <h5>Connectivity</h5>
-                                        <ul>
-                                            <li>
-                                                <a href="category.html?tags=WiFi">WiFi</a>
-                                            </li>
-                                            <li>
-                                                <a href="category.html?tags=Bluetooth">Bluetooth</a>
-                                            </li>
+                                            <li><a href="category.html?tags=Microcontroller">Microcontroller</a></li>
+                                            <li><a href="category.html?tags=SBC">SBC</a></li>
+                                            <li><a href="category.html?tags=Module">Module</a></li>
+                                            <li><a href="category.html?tags=Kit">Starter Kit</a></li>
                                         </ul>
                                     </div>
                                     <div class="col-sm-3">
-                                        <h5>Featured</h5>
+                                        <h5>Connectivity</h5>
                                         <ul>
-                                            <li><a href="category.html?tags=Beginner">Beginner</a>
-                                            </li>
-                                            <li><a href="category.html?tags=AI">AI / ML</a>
-                                            </li>
+                                            <li><a href="category.html?tags=WiFi">WiFi</a></li>
+                                            <li><a href="category.html?tags=Bluetooth">Bluetooth</a></li>
+                                            <li><a href="category.html?tags=LoRa">LoRa</a></li>
+                                            <li><a href="category.html?tags=Zigbee">Zigbee</a></li>
+                                            <li><a href="category.html?tags=Cellular">Cellular / GSM</a></li>
+                                        </ul>
+                                        <h5>Sensors</h5>
+                                        <ul>
+                                            <li><a href="category.html?tags=Temperature">Temperature / Humidity</a></li>
+                                            <li><a href="category.html?tags=Motion">Motion / IMU</a></li>
+                                            <li><a href="category.html?tags=Distance">Distance / Ultrasonic</a></li>
+                                            <li><a href="category.html?tags=Gas">Gas / Air Quality</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h5>Actuators</h5>
+                                        <ul>
+                                            <li><a href="category.html?tags=Motor">Motor Driver</a></li>
+                                            <li><a href="category.html?tags=Servo">Servo</a></li>
+                                            <li><a href="category.html?tags=Relay">Relay</a></li>
+                                            <li><a href="category.html?tags=Display">Display / OLED</a></li>
+                                        </ul>
+                                        <h5>Power</h5>
+                                        <ul>
+                                            <li><a href="category.html?tags=Power">Power Supply</a></li>
+                                            <li><a href="category.html?tags=Battery">Battery / LiPo</a></li>
+                                            <li><a href="category.html?tags=Solar">Solar</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <h5>By Use Case</h5>
+                                        <ul>
+                                            <li><a href="category.html?tags=Beginner">Beginner Friendly</a></li>
+                                            <li><a href="category.html?tags=AI">AI / ML</a></li>
+                                            <li><a href="category.html?tags=Robotics">Robotics</a></li>
+                                            <li><a href="category.html?tags=IoT">IoT</a></li>
+                                            <li><a href="category.html?tags=3D+Printing">3D Printing</a></li>
+                                        </ul>
+                                        <h5>Tools</h5>
+                                        <ul>
+                                            <li><a href="category.html?tags=Soldering">Soldering</a></li>
+                                            <li><a href="category.html?tags=Multimeter">Multimeter</a></li>
+                                            <li><a href="category.html?tags=Oscilloscope">Oscilloscope</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.yamm-content -->
                         </li>
                     </ul>
                 </li>
@@ -171,6 +192,9 @@ _________________________________________________________ -->
             </div>
 
             <div class="navbar-collapse collapse right" id="basket-overview">
+                <a href="customer-account.html" class="btn btn-default navbar-btn navbar-user-btn" title="Account">
+                    <i class="fa fa-user"></i>
+                </a>
                 <a href="basket.html" class="btn btn-primary navbar-btn"><i
                         class="fa fa-shopping-cart"></i><span class="hidden-sm"
                                                               id="numItemsInCart">0 items in cart</span></a>
@@ -209,6 +233,10 @@ _________________________________________________________ -->
 <!-- /#navbar -->
 
 <!-- *** NAVBAR END *** -->
+
+<style>
+.navbar-user-btn { margin-right: 4px; }
+</style>
 
 <script>
     $(document).ready(function () {
