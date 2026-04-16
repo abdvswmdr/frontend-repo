@@ -179,20 +179,35 @@ _________________________________________________________ -->
         $("#navbar").load("navbar.html");
         $("#footer").load("footer.html");
 
-        var currency = (typeof soqoniGetCurrency === 'function') ? soqoniGetCurrency() : 'USD';
-        var symbol   = (typeof soqoniSymbol === 'function')      ? soqoniSymbol()      : '$';
+        var CURRENCY_SYMBOLS = { USD: '$', KES: 'KSh ', EUR: '€' };
+        var currency = localStorage.getItem('soqoniCurrency') || 'USD';
+        var symbol   = CURRENCY_SYMBOLS[currency] || '$';
 
-        $.getJSON('/catalogue', {size: 5, currency: currency}, function (data) {
+        // Init main slider immediately (doesn't need catalogue data)
+        $('#main-slider').owlCarousel({
+            navigation: false,
+            slideSpeed: 400,
+            paginationSpeed: 400,
+            autoPlay: 4000,
+            stopOnHover: true,
+            singleItem: true,
+            pagination: true
+        });
+
+        $.getJSON('/catalogue', {size: 8, currency: currency}, function (data) {
             if (data != null) {
                 $.each(data, function (index, element) {
                     $('#hot-slider').append(
                         '<div class="item">' +
                         '<div class="product">' +
-                        '<div class="product-badge">BEST SELLER</div>' +
+                        '<div class="product-badge">Best Seller</div>' +
                         '<div class="product-img-wrap">' +
                         '<a href="detail.html?id=' + element.id + '">' +
                         '<img src="' + element.imageUrl[0] + '" alt="' + element.name + '">' +
                         '</a>' +
+                        '<div class="hover-cart">' +
+                        '<a href="#" onclick="addToCart(\'' + element.id + '\');return false;" class="btn"><i class="fa fa-shopping-cart"></i> Add to cart</a>' +
+                        '</div>' +
                         '</div>' +
                         '<div class="text">' +
                         '<div class="product-stars">★★★★★</div>' +
@@ -204,24 +219,19 @@ _________________________________________________________ -->
                     );
                 });
                 $('.product-slider').owlCarousel({
-                    navigation: true, // Show next and prev buttons
+                    navigation: true,
                     slideSpeed: 300,
                     paginationSpeed: 400,
+                    items: 4,
+                    itemsDesktop: [1199, 4],
+                    itemsDesktopSmall: [979, 3],
+                    itemsTablet: [768, 2],
+                    itemsMobile: [479, 1],
+                    pagination: true,
                     afterInit: function () {
                         $('.product-slider .item').css('visibility', 'visible');
                     }
                 });
-
-                $('#main-slider').owlCarousel({
-                    navigation: true, // Show next and prev buttons
-                    slideSpeed: 300,
-                    paginationSpeed: 400,
-                    autoPlay: true,
-                    stopOnHover: true,
-                    singleItem: true,
-                    afterInit: ''
-                });
-
             }
         });
     })
