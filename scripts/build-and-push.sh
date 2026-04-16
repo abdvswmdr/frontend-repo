@@ -12,10 +12,21 @@ IMAGE="abdvswmdr/soqonifrontend"
 TAG=$(git -C "$REPO_ROOT" rev-parse --short HEAD)
 BRANCH=$(git -C "$REPO_ROOT" rev-parse --abbrev-ref HEAD)
 LOCAL_ONLY=false
+K8S_DIR="$REPO_ROOT/../soqoni-k8s"
 
 if [[ "${1:-}" == "--local" ]]; then
     LOCAL_ONLY=true
 fi
+
+patch_manifests() {
+    if [ ! -d "$K8S_DIR" ]; then
+        echo "WARN: $K8S_DIR not found — skipping manifest patch"
+        return
+    fi
+    echo "==> Patching k8s manifests with tag $TAG"
+    sed -i "s|image: $IMAGE:.*|image: $IMAGE:$TAG|g" "$K8S_DIR/frontend.yaml"
+    echo "    frontend.yaml -> $IMAGE:$TAG"
+}
 
 echo "==> Tag:    $TAG"
 echo "==> Branch: $BRANCH"
@@ -28,9 +39,7 @@ docker build -t "$IMAGE:$TAG" "$REPO_ROOT"
 if [ "$LOCAL_ONLY" = true ]; then
     echo "==> Loading image into minikube"
     minikube image load "$IMAGE:$TAG"
-    echo ""
-    echo "Done. Update your k8s manifest:"
-    echo "  soqoni-k8s/frontend.yaml -> image: $IMAGE:$TAG"
+    patch_manifests
     exit 0
 fi
 
@@ -45,6 +54,6 @@ else
     echo "==> Not on main ($BRANCH) — skipping :latest"
 fi
 
+patch_manifests
 echo ""
-echo "Done. Update your k8s manifest:"
-echo "  soqoni-k8s/frontend.yaml -> image: $IMAGE:$TAG"
+echo "Done. Apply with: kubectl apply -f $K8S_DIR/frontend.yaml"
