@@ -111,26 +111,46 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     border: 1px solid #e0e6f0 !important;
     box-shadow: 0 8px 24px rgba(0,0,0,0.10) !important;
 }
-.navbar .dropdown-menu a { color: #2a3a5a !important; font-size: 13px; }
-.navbar .dropdown-menu a:hover { color: #0a5bbf !important; background: #f0f5ff !important; }
+/* Kill all uppercase and borders from style.blue.css yamm overrides */
+.navbar .yamm-content h5,
+.navbar .yamm-content ul li,
+.navbar .yamm-content ul li a,
+.navbar .dropdown-menu h5,
+.navbar .dropdown-menu ul li {
+    text-transform: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+}
+.navbar .dropdown-menu a {
+    color: #2a3a5a !important;
+    font-size: 13px;
+    text-transform: none !important;
+}
+.navbar .dropdown-menu a:hover { color: #0a5bbf !important; background: transparent !important; }
 .navbar .dropdown-menu h5 {
     color: #1a2a4a;
     font-size: 13px;
     font-weight: 600;
-    text-transform: none;
+    text-transform: none !important;
     letter-spacing: 0;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     margin-top: 10px;
+    border-bottom: none !important;
 }
 .navbar .dropdown-menu ul {
     list-style: none;
     padding: 0;
     margin: 0 0 4px;
 }
+.navbar .dropdown-menu ul li {
+    border-bottom: none !important;
+    padding: 0;
+}
 .navbar .dropdown-menu ul li a {
     display: block;
-    padding: 2px 0;
-    line-height: 1.6;
+    padding: 1px 0;
+    line-height: 1.7;
+    text-transform: none !important;
 }
 
 /* ── Page content area ──────────────────────────────── */
