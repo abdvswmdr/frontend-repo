@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     color: #1a2a4a !important;
     font-weight: 500;
     font-size: 14px;
-    padding: 20px 16px;
+    padding: 12px 14px;
     text-transform: none !important;
     letter-spacing: 0 !important;
 }
@@ -114,12 +114,23 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 .navbar .dropdown-menu a { color: #2a3a5a !important; font-size: 13px; }
 .navbar .dropdown-menu a:hover { color: #0a5bbf !important; background: #f0f5ff !important; }
 .navbar .dropdown-menu h5 {
-    color: #0a5bbf;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
+    color: #1a2a4a;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 4px;
+    margin-top: 10px;
+}
+.navbar .dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 4px;
+}
+.navbar .dropdown-menu ul li a {
+    display: block;
+    padding: 2px 0;
+    line-height: 1.6;
 }
 
 /* ── Page content area ──────────────────────────────── */
@@ -179,21 +190,8 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 .product-slider.owl-carousel { margin-bottom: 0 !important; }
 .owl-controls { margin-top: 12px !important; }
 
-/* ── Advantages section ─────────────────────────────── */
-#advantages { background: #fff; padding: 28px 0 !important; border-bottom: 1px solid #e8edf5; }
-#advantages .box {
-    background: #fff !important;
-    border: 1px solid #e0e6f0 !important;
-    border-radius: 8px !important;
-    box-shadow: none !important;
-    padding: 20px 18px !important;
-    text-align: center;
-    transition: box-shadow 0.2s;
-}
-#advantages .box:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08) !important; }
-#advantages .box .icon i { color: #0a5bbf !important; font-size: 28px; }
-#advantages .box h3 a { color: #1a2a4a !important; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; }
-#advantages .box p { color: #5a6880; font-size: 13px; }
+/* ── Advantages section — hidden ────────────────────── */
+#advantages { display: none !important; }
 
 /* ── Product cards ──────────────────────────────────── */
 .product {
@@ -229,17 +227,18 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 
 /* Product image area */
 .product-img-wrap {
-    height: 180px;
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #fff;
     overflow: hidden;
-    padding: 12px;
+    padding: 10px;
     border-bottom: 1px solid #f0f3f8;
+    position: relative;
 }
 .product-img-wrap img {
-    max-height: 156px;
+    max-height: 140px;
     max-width: 100%;
     width: auto;
     object-fit: contain;
@@ -251,6 +250,28 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     height: 100%;
     width: 100%;
 }
+/* Hover "Add to cart" overlay on product image */
+.product-img-wrap .hover-cart {
+    position: absolute;
+    bottom: -44px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 30, 70, 0.82);
+    text-align: center;
+    padding: 8px;
+    transition: bottom 0.18s ease;
+    z-index: 5;
+}
+.product-img-wrap:hover .hover-cart { bottom: 0; }
+.product-img-wrap .hover-cart .btn {
+    font-size: 12px;
+    padding: 4px 12px;
+    background: #0a5bbf;
+    border-color: #0a5bbf;
+    color: #fff;
+    border-radius: 4px;
+}
+.product-img-wrap .hover-cart .btn:hover { background: #094fa3; }
 
 /* Keep flip-container working on category page */
 .flip-container {
@@ -278,18 +299,17 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 
 /* Product text area */
 .product .text {
-    padding: 10px 14px 14px;
+    padding: 7px 10px 10px;
     min-height: unset;
     text-align: left !important;
 }
 .product .text h3 {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
-    margin: 4px 0 4px;
-    line-height: 1.4;
+    margin: 2px 0 2px;
+    line-height: 1.35;
     color: #1a2a4a;
     text-align: left !important;
-    /* prevent overflow clipping product names */
     overflow: visible;
     white-space: normal;
     height: auto;
@@ -305,19 +325,27 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 /* Star ratings */
 .product-stars {
     color: #f5a623;
-    font-size: 12px;
-    letter-spacing: 1px;
-    margin-bottom: 2px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    margin-bottom: 1px;
     text-align: left !important;
 }
+/* Hide old button row on product cards */
+.product .text .buttons { display: none !important; }
+
+/* product card margin */
+.product { margin-bottom: 12px; }
+
+/* Carousel dots centered */
+.owl-controls .owl-pagination { text-align: center !important; }
 
 /* Price */
 .product .text .price,
 .product .text p.price {
     color: #e8632a !important;
-    font-size: 15px !important;
+    font-size: 13px !important;
     font-weight: 600 !important;
-    margin: 4px 0 10px !important;
+    margin: 2px 0 4px !important;
     background: transparent !important;
     border: none !important;
     padding: 0 !important;
@@ -448,12 +476,12 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 }
 #main-slider .item a {
     display: block;
-    max-height: 340px;
+    max-height: 240px;
     overflow: hidden;
 }
 #main-slider .item img {
     width: 100%;
-    max-height: 340px;
+    max-height: 240px;
     object-fit: cover;
     object-position: center top;
     display: block;
