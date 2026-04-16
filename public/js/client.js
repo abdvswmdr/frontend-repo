@@ -130,6 +130,20 @@ function deleteCart() {
     });
 }
 
+function showCartToast(msg, type) {
+    var existing = document.getElementById('cart-toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.id = 'cart-toast';
+    toast.textContent = msg;
+    toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;' +
+        'padding:10px 18px;border-radius:5px;font-size:13px;font-family:Inter,sans-serif;' +
+        'color:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.15);' +
+        (type === 'error' ? 'background:#c0392b;' : 'background:#1a7a3a;');
+    document.body.appendChild(toast);
+    setTimeout(function() { if (toast.parentNode) toast.remove(); }, 3000);
+}
+
 function addToCart(id) {
     console.log("Sending request to add to cart: " + id);
     $.ajax({
@@ -142,6 +156,7 @@ function addToCart(id) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error('Could not add item: ' + id + ', due to: ' + textStatus + ' | ' + errorThrown);
+            showCartToast('Could not add to cart — cart service unavailable.', 'error');
         }
     });
 }
