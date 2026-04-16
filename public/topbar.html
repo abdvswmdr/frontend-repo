@@ -162,13 +162,8 @@ _________________________________________________________ -->
             contentType: "application/json; charset=utf-8"
         });
 
-        // Sync dropdown to stored value (topbar loads after DOM ready)
-        $(document).on('change', '#currency-select', function () {
-            soqoniSetCurrency($(this).val());
-        });
-
-        // Set dropdown to current value once topbar is loaded
-        var stored = soqoniGetCurrency();
+        // Set dropdown to stored value immediately on topbar load
+        var stored = localStorage.getItem('soqoniCurrency') || 'USD';
         $('#currency-select').val(stored);
 
         if ($.cookie('logged_in') != null && $.cookie('logged_in') != "") {

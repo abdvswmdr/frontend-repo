@@ -204,8 +204,9 @@ _________________________________________________________ -->
         if (id == null || id == "") {
             document.location.href = "/";
         }
-        var currency = (typeof soqoniGetCurrency === 'function') ? soqoniGetCurrency() : 'USD';
-        var symbol   = (typeof soqoniSymbol === 'function')      ? soqoniSymbol()      : '$';
+        var CURRENCY_SYMBOLS = { USD: '$', KES: 'KSh ', EUR: '€' };
+        var currency = localStorage.getItem('soqoniCurrency') || 'USD';
+        var symbol   = CURRENCY_SYMBOLS[currency] || '$';
 
         $.getJSON('/catalogue/' + id, {currency: currency}, function (data) {
             $("#title").text(data.name);
