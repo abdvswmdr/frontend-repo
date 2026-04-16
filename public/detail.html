@@ -204,10 +204,13 @@ _________________________________________________________ -->
         if (id == null || id == "") {
             document.location.href = "/";
         }
-        $.getJSON('/catalogue/' + id, function (data) {
+        var currency = (typeof soqoniGetCurrency === 'function') ? soqoniGetCurrency() : 'USD';
+        var symbol   = (typeof soqoniSymbol === 'function')      ? soqoniSymbol()      : '$';
+
+        $.getJSON('/catalogue/' + id, {currency: currency}, function (data) {
             $("#title").text(data.name);
             $("#breadcrumb").text(data.name);
-            $("#price").text("$" + data.price.toFixed(2));
+            $("#price").text(symbol + data.price.toFixed(2));
             $("#imageMain").attr("src", data.imageUrl[0]);
             $("#buttonCart").attr("onClick", "addToCart(\'" + data.id + "\')");
             var thumbHtml = "";

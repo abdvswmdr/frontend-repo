@@ -231,7 +231,10 @@ _________________________________________________________ -->
                 });
 
 
-                $.getJSON('/catalogue', {page: page, size: size, tags: tags}, function (data) {
+                var currency = (typeof soqoniGetCurrency === 'function') ? soqoniGetCurrency() : 'USD';
+                var symbol   = (typeof soqoniSymbol === 'function')      ? soqoniSymbol()      : '$';
+
+                $.getJSON('/catalogue', {page: page, size: size, tags: tags, currency: currency}, function (data) {
                     if (data != null) {
                         $.each(data, function (index, element) {
                             $('#products').append(
@@ -245,7 +248,7 @@ _________________________________________________________ -->
                                 '<div class="text">' +
                                 '<div class="product-stars">★★★★★</div>' +
                                 '<h3><a href="detail.html?id=' + element.id + '">' + element.name + '</a></h3>' +
-                                '<p class="price">$' + element.price + '</p>' +
+                                '<p class="price">' + symbol + element.price.toFixed(2) + '</p>' +
                                 '<p class="buttons">' +
                                 '<a href="detail.html?id=' + element.id + '" class="btn btn-default">View detail</a>' +
                                 '<a href="#" onclick="addToCart(\'' + element.id + '\')" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a>' +
