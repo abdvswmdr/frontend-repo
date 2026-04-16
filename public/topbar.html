@@ -18,12 +18,17 @@ _________________________________________________________ -->
         </div>
         <div class="col-md-4" data-animate="fadeInDown">
             <ul class="menu">
+                <li>
+                    <select id="currency-select" onchange="soqoniSetCurrency(this.value)" title="Currency">
+                        <option value="USD">$ USD</option>
+                        <option value="KES">KSh KES</option>
+                        <option value="EUR">€ EUR</option>
+                    </select>
+                </li>
                 <li id="login"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
                 <li id="howdy"></li>
                 <li id="logout"><a href="index.html" onclick="logout()">Logout</a></li>
                 <li id="register"><a href="#" data-toggle="modal" data-target="#register-modal">Register</a></li>
-                <!--<li><a href="contact.html">Contact</a></li>-->
-                <!--<li><a href="#">Recently viewed</a></li>-->
             </ul>
         </div>
     </div>
@@ -131,10 +136,40 @@ _________________________________________________________ -->
 
 <script>
 
+    // --- Currency helpers (global, used by index/category/detail) ---
+    var CURRENCY_SYMBOLS = { USD: '$', KES: 'KSh ', EUR: '€' };
+
+    function soqoniGetCurrency() {
+        return localStorage.getItem('soqoniCurrency') || 'USD';
+    }
+
+    function soqoniSetCurrency(val) {
+        localStorage.setItem('soqoniCurrency', val);
+        location.reload();
+    }
+
+    function soqoniSymbol() {
+        return CURRENCY_SYMBOLS[soqoniGetCurrency()] || '$';
+    }
+
+    // Expose globally so other page scripts can call them
+    window.soqoniGetCurrency = soqoniGetCurrency;
+    window.soqoniSetCurrency = soqoniSetCurrency;
+    window.soqoniSymbol      = soqoniSymbol;
+
     $(document).ready(function () {
         $.ajaxSetup({
             contentType: "application/json; charset=utf-8"
         });
+
+        // Sync dropdown to stored value (topbar loads after DOM ready)
+        $(document).on('change', '#currency-select', function () {
+            soqoniSetCurrency($(this).val());
+        });
+
+        // Set dropdown to current value once topbar is loaded
+        var stored = soqoniGetCurrency();
+        $('#currency-select').val(stored);
 
         if ($.cookie('logged_in') != null && $.cookie('logged_in') != "") {
 
@@ -192,4 +227,16 @@ _________________________________________________________ -->
     line-height: 1;
 }
 #announcement-close:hover { color: #fff; }
+
+#currency-select {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-size: 12px;
+    padding: 1px 4px;
+    border-radius: 3px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+#currency-select option { color: #333; background: #fff; }
 </style>
