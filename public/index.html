@@ -179,7 +179,10 @@ _________________________________________________________ -->
         $("#navbar").load("navbar.html");
         $("#footer").load("footer.html");
 
-        $.getJSON('/catalogue', {size: 5}, function (data) {
+        var currency = (typeof soqoniGetCurrency === 'function') ? soqoniGetCurrency() : 'USD';
+        var symbol   = (typeof soqoniSymbol === 'function')      ? soqoniSymbol()      : '$';
+
+        $.getJSON('/catalogue', {size: 5, currency: currency}, function (data) {
             if (data != null) {
                 $.each(data, function (index, element) {
                     $('#hot-slider').append(
@@ -194,7 +197,7 @@ _________________________________________________________ -->
                         '<div class="text">' +
                         '<div class="product-stars">★★★★★</div>' +
                         '<h3><a href="detail.html?id=' + element.id + '">' + element.name + '</a></h3>' +
-                        '<p class="price">$' + element.price + '</p>' +
+                        '<p class="price">' + symbol + element.price.toFixed(2) + '</p>' +
                         '</div>' +
                         '</div>' +
                         '</div>'
