@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 #top {
     background: #0a2e6e !important;
     color: #e8edf8 !important;
-    padding: 6px 0 !important;
+    padding: 4px 0 !important;
     font-size: 13px;
     white-space: nowrap;
 }
@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     background: #e8632a !important;
     border-color: #e8632a !important;
     font-size: 11px !important;
-    padding: 2px 8px !important;
+    padding: 4px 6px !important;
 }
 #top ul.menu > li + li:before { color: #4a5a7a !important; }
 
@@ -42,11 +42,11 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 .navbar-default .navbar-nav > li > a {
     color: #1a2a4a !important;
     font-weight: 400 !important;
-    font-size: 13px;
-    padding: 8px 12px;
+    font-size: 12px;
+    padding: 4px 6px;
     text-transform: none !important;
     letter-spacing: 0 !important;
-    line-height: 36px;
+    line-height: 30px;
     border-bottom: none !important;
 }
 .navbar-default .navbar-nav > li > a:hover,
@@ -100,7 +100,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     border: 1px solid #d0d8e8;
     font-size: 13px;
     height: 34px;
-    padding-left: 14px;
+    padding-left: 4px;
     background: #f0f3f9;
 }
 .navbar-search-wrap .form-control:focus {
@@ -114,7 +114,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     border-color: #0a5bbf;
     color: #fff;
     height: 34px;
-    padding: 0 12px;
+    padding: 0 10px;
 }
 
 /* Cart button */
@@ -123,7 +123,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     border-color: #0a5bbf !important;
     border-radius: 4px !important;
     font-size: 13px;
-    padding: 6px 14px;
+    padding: 4px 10px;
 }
 .navbar-buttons .btn.btn-primary:hover {
     background: #094fa3 !important;
@@ -164,7 +164,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 .navbar .dropdown-menu ul {
     list-style: none;
     padding: 0;
-    margin: 0 0 4px;
+    margin: 0 0 2px;
 }
 .navbar .dropdown-menu ul li {
     border-bottom: none !important;
@@ -185,9 +185,9 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 .breadcrumb {
     background: transparent !important;
     border: none;
-    padding: 10px 0 6px;
+    padding: 8px 0 4px;
     font-size: 13px;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 .breadcrumb > li + li:before { color: #8a9ab8; }
 .breadcrumb a { color: #0a5bbf; }
@@ -223,7 +223,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     color: #1a2a4a;
     text-transform: none !important;
     letter-spacing: 0;
-    padding: 12px 0 0;
+    padding: 10px 0 0;
     margin: 0;
 }
 #hot h2::after {
@@ -232,7 +232,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     width: 36px;
     height: 3px;
     background: #0a5bbf;
-    margin: 4px auto 8px;
+    margin: 2px auto 6px;
     border-radius: 2px;
 }
 #hot { background: #f5f7fa; padding: 0 0 8px !important; }
@@ -272,8 +272,8 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    padding: 2px 7px;
-    border-radius: 0 3px 3px 0;
+    padding: 2px 6px;
+    border-radius: 0 2px 2px 0;
     line-height: 1.4;
 }
 
@@ -294,7 +294,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     max-width: 100%;
     width: 100%;
     object-fit: contain;
-    padding: 8px;
+    padding: 6px;
 }
 .product-img-wrap a {
     display: flex;
@@ -311,18 +311,18 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     right: 0;
     background: rgba(10, 30, 70, 0.82);
     text-align: center;
-    padding: 8px;
+    padding: 6px;
     transition: bottom 0.18s ease;
     z-index: 5;
 }
 .product-img-wrap:hover .hover-cart { bottom: 0; }
 .product-img-wrap .hover-cart .btn {
     font-size: 12px;
-    padding: 4px 12px;
+    padding: 4px 10px;
     background: #0a5bbf;
     border-color: #0a5bbf;
     color: #fff;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 .product-img-wrap .hover-cart .btn:hover { background: #094fa3; }
 
@@ -339,7 +339,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     justify-content: center;
     background: #fff;
     overflow: hidden;
-    padding: 12px;
+    padding: 10px;
 }
 .flip-container .front img,
 .flip-container .back img {
@@ -355,7 +355,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
  * #content .product .text h3 { font-size: 18px; font-weight: 700; height: 39.6px; text-align: center }
  * — the #content ID gives it higher specificity, so we need !important to win. */
 .product .text {
-    padding: 5px 8px 6px !important;
+    padding: 4px 6px 4px !important;
     min-height: unset !important;
     text-align: left !important;
 }
@@ -416,15 +416,15 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 .product .text .buttons { margin: 0; }
 .product .text .btn-default {
     font-size: 12px;
-    padding: 5px 10px;
+    padding: 4px 10px;
     border-color: #c8d4ea;
     color: #3a4a6a;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 .product .text .btn-default:hover { border-color: #0a5bbf; color: #0a5bbf; }
 .product .text .btn-primary {
     font-size: 12px;
-    padding: 5px 10px;
+    padding: 4px 10px;
     background: #0a5bbf;
     border-color: #0a5bbf;
     border-radius: 4px;
@@ -531,14 +531,95 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 #copyright .col-md-6 { padding-bottom: 0 !important; margin-bottom: 0 !important; }
 html, body { margin-bottom: 0 !important; padding-bottom: 0 !important; }
 
+/* ── Homepage category strip ────────────────────────── */
+#categories {
+    background: #fff;
+    padding: 10px 0 8px;
+    border-top: 1px solid #e8ecf4;
+    border-bottom: 1px solid #e8ecf4;
+}
+.category-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 4px 0 2px;
+}
+.category-card {
+    flex: 1 1 calc(11.11% - 6px);
+    min-width: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 6px 8px;
+    border: 1px solid #e4e9f2;
+    border-radius: 6px;
+    background: #f8faff;
+    text-decoration: none !important;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    gap: 5px;
+}
+.category-card:hover {
+    border-color: #0a5bbf;
+    background: #fff;
+    box-shadow: 0 3px 10px rgba(10,91,191,0.08);
+    text-decoration: none !important;
+}
+.category-card i { font-size: 20px; color: #0a5bbf; line-height: 1; }
+.category-card span {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1a2a4a;
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* ── Tagged product sections ─────────────────────────── */
+.product-section { padding: 6px 0 10px; background: #f5f7fa; }
+#section-sbc      { background: #fff; }
+#section-sensors  { background: #f5f7fa; }
+#section-wireless { background: #fff; }
+#section-display  { background: #f5f7fa; }
+#section-motors   { background: #fff; }
+#section-power    { background: #f5f7fa; }
+
+.section-header {
+    display: block;
+    text-align: center;
+    padding: 12px 0 0;
+    border-bottom: none;
+    margin-bottom: 8px;
+}
+.section-header h2 {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #1a2a4a !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+.section-header h2::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background: #0a5bbf;
+    margin: 4px auto 8px;
+    border-radius: 2px;
+}
+/* "View all" link removed — users navigate via category strip or navbar */
+.section-header a { display: none !important; }
+
 /* ── Slider — full-width, break out of .container padding ── */
-#content > div.container:first-child {
+#slider-container {
     padding: 0 !important;
     margin-top: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
 }
-#content > div.container:first-child .col-md-12 {
+#slider-container .col-md-12 {
     padding: 0 !important;
     margin-top: 0 !important;
 }
@@ -573,8 +654,8 @@ html, body { margin-bottom: 0 !important; padding-bottom: 0 !important; }
 /* 5-column product grid */
 .col-product {
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 1px;
+    padding-right: 1px;
     min-height: 1px;
     width: 50%;
 }
@@ -584,7 +665,7 @@ html, body { margin-bottom: 0 !important; padding-bottom: 0 !important; }
 @media (min-width: 992px) {
     .col-product { width: 20%; }
 }
-#products { margin-left: -5px; margin-right: -5px; }
+#products { margin-left: -2px; margin-right: -2px; }
 
 /* ── Filter sidebar (category page) ─────────────────────── */
 .sidebar-menu .panel-body { padding: 10px 12px !important; }
@@ -593,7 +674,7 @@ html, body { margin-bottom: 0 !important; padding-bottom: 0 !important; }
     font-size: 12px !important;
     color: #3a4a6a !important;
     cursor: pointer;
-    padding-left: 18px;
+    padding-left: 10px;
     line-height: 1.5;
 }
 .sidebar-menu .checkbox input[type="checkbox"] { margin-top: 3px; }
@@ -630,18 +711,18 @@ html, body { margin-bottom: 0 !important; padding-bottom: 0 !important; }
 
 /* Left column: constrained image box */
 #mainImage {
-    max-height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #fff;
     border: 1px solid #e4e9f2;
     border-radius: 6px;
-    padding: 16px;
+    padding: 12px;
     overflow: hidden;
+    min-height: 380px;
 }
 #imageMain {
-    max-height: 268px;
+    max-height: 380px;
     max-width: 100%;
     width: auto;
     object-fit: contain;
@@ -652,12 +733,13 @@ html, body { margin-bottom: 0 !important; padding-bottom: 0 !important; }
 
 /* Right column box */
 #productMain .box {
-    padding: 14px 16px !important;
+    padding: 16px 20px !important;
     border: 1px solid #e4e9f2 !important;
     border-radius: 6px !important;
     background: #fff !important;
     box-shadow: none !important;
-    margin-bottom: 10px !important;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
 }
 
 /* Product title */
@@ -705,25 +787,54 @@ p#price.price {
     border-radius: 4px !important;
 }
 
-/* Thumbnail strip */
-#thumbs { margin-top: 8px; }
-#thumbs .col-xs-4 { padding: 3px; }
+/* Thumbnail strip — horizontal row below main image */
+#thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+#thumbs .col-xs-4 {
+    width: auto !important;
+    padding: 0 !important;
+    flex: 0 0 auto;
+}
 #thumbs img {
-    max-height: 60px;
+    width: 68px;
+    height: 68px;
     object-fit: contain;
     border: 1px solid #e4e9f2;
     border-radius: 4px;
-    padding: 3px;
+    padding: 4px;
     background: #fff;
-    width: 100%;
+    cursor: pointer;
+    transition: border-color 0.15s;
 }
+#thumbs img:hover { border-color: #0a5bbf; }
+
+/* Product spec bullet list (detail page description) */
+.product-spec-list {
+    padding-left: 10px;
+    margin: 4px 0 0;
+    list-style: disc;
+}
+.product-spec-list li {
+    font-size: 13px !important;
+    color: #3a4a6a !important;
+    line-height: 1.7;
+    padding: 1px 0;
+}
+
+/* Related products grid (detail page) */
+#related-section { margin-top: 18px; }
+#related-products { margin: 0 -4px; overflow: hidden; }
 
 /* Product details + specs section */
 #productDetails {
-    padding: 14px 18px !important;
-    margin-top: 12px !important;
+    padding: 12px 16px !important;
+    margin-top: 10px !important;
     border: 1px solid #e4e9f2 !important;
-    border-radius: 6px !important;
+    border-radius: 4px !important;
     background: #fff !important;
     box-shadow: none !important;
 }
@@ -733,16 +844,16 @@ p#price.price {
     text-transform: uppercase !important;
     letter-spacing: 0.07em !important;
     color: #8a9ab8 !important;
-    margin: 14px 0 5px !important;
+    margin: 12px 0 5px !important;
     border: none !important;
 }
 #productDetails h4:first-child { margin-top: 0 !important; }
 #productDetails p,
 #productDetails li { font-size: 13px !important; color: #3a4a6a !important; line-height: 1.6; }
-#productDetails ul { padding-left: 16px; margin-bottom: 6px; }
+#productDetails ul { padding-left: 10px; margin-bottom: 6px; }
 #productDetails blockquote {
-    border-left: 3px solid #e4e9f2 !important;
-    padding: 6px 12px !important;
+    border-left: 2px solid #e4e9f2 !important;
+    padding: 4px 10px !important;
     font-size: 12px !important;
     color: #8a9ab8 !important;
     margin: 10px 0 6px !important;
@@ -775,3 +886,71 @@ p#price.price {
 
 /* Clearfix for col-product grid */
 #products::after { content: ''; display: table; clear: both; }
+
+
+/* ── OWL carousel item gutters ───────────────────────── */
+/* Remove template's 25px margin that narrows cards */
+#hot .product-slider .item {
+    margin: 0 !important;
+}
+
+/* Gutter padding */
+.product-slider .owl-item {
+    padding: 0 2px !important;
+}
+
+
+/* ── OWL carousel side arrows ────────────────────────── */
+.product-slider {
+    position: relative !important;
+}
+
+/* Collapse the controls container so it takes no vertical space.
+   pagination: false in JS so no dots to worry about. */
+.product-slider .owl-controls {
+    position: static !important;
+    height: 0 !important;
+    overflow: visible !important;
+    margin: 0 !important;
+}
+.product-slider .owl-buttons {
+    position: static !important;
+}
+
+.product-slider .owl-prev,
+.product-slider .owl-next {
+    position: absolute !important;
+    top: 0 !important;
+    height: 155px !important;
+    width: 28px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(10, 20, 50, 0.60) !important;
+    border-radius: 3px !important;
+    opacity: 1 !important;
+    cursor: pointer;
+    z-index: 20;
+    transition: background 0.15s;
+    font-size: 0 !important;
+}
+.product-slider .owl-prev { left: 0 !important; }
+.product-slider .owl-next { right: 0 !important; }
+.product-slider .owl-prev:hover,
+.product-slider .owl-next:hover {
+    background: rgba(10, 91, 191, 0.85) !important;
+}
+.product-slider .owl-prev::before {
+    content: '‹';
+    font-size: 26px;
+    font-weight: 300;
+    color: #fff;
+    line-height: 1;
+}
+.product-slider .owl-next::before {
+    content: '›';
+    font-size: 26px;
+    font-weight: 300;
+    color: #fff;
+    line-height: 1;
+}

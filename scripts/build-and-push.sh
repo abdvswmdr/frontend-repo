@@ -37,9 +37,14 @@ echo "==> Building $IMAGE:$TAG"
 docker build -t "$IMAGE:$TAG" "$REPO_ROOT"
 
 if [ "$LOCAL_ONLY" = true ]; then
-    echo "==> Loading image into minikube"
-    minikube image load "$IMAGE:$TAG"
+    echo "==> Loading image into minikube (overwrite)"
+    minikube image load --overwrite=true "$IMAGE:$TAG"
     patch_manifests
+    echo "==> Applying manifest"
+    kubectl apply -f "$K8S_DIR/frontend.yaml"
+    echo "==> Restarting deployment to pick up new image"
+    kubectl rollout restart deployment/frontend
+    kubectl rollout status deployment/frontend
     exit 0
 fi
 

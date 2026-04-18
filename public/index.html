@@ -13,28 +13,19 @@
 
     <title> Soqoni </title>
 
-    <meta name="keywords" content="">
-
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100'
           rel='stylesheet' type='text/css'>
 
-    <!-- styles -->
     <link href="css/font-awesome.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/owl.carousel.css" rel="stylesheet">
     <link href="css/owl.theme.css" rel="stylesheet">
-
-    <!-- theme stylesheet -->
     <link href="css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
-
-    <!-- your stylesheet with modifications -->
     <link href="css/custom.css" rel="stylesheet">
 
     <script src="js/respond.min.js"></script>
-
     <link rel="shortcut icon" href="favicon.png">
-
 
 </head>
 
@@ -47,7 +38,8 @@
 
     <div id="content">
 
-        <div class="container">
+        <!-- MAIN BANNER SLIDER -->
+        <div class="container" id="slider-container">
             <div class="col-md-12">
                 <div id="main-slider">
                     <div class="item">
@@ -66,64 +58,59 @@
                         </a>
                     </div>
                 </div>
-                <!-- /#main-slider -->
             </div>
         </div>
 
-        <!-- *** ADVANTAGES HOMEPAGE ***
-_________________________________________________________ -->
-        <div id="advantages">
-
+        <!-- SHOP BY CATEGORY -->
+        <div id="categories">
             <div class="container">
-                <div class="same-height-row">
-                    <div class="col-sm-4">
-                        <div class="box same-height clickable">
-                            <div class="icon"><i class="fa fa-heart"></i>
-                            </div>
-
-                            <h3><a href="#">Recommendation Engine </a></h3>
-                            <p>Use our award winning recommendation engine to choose the right
-                               device for you.  </p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="box same-height clickable">
-                            <div class="icon"><i class="fa fa-tags"></i>
-                            </div>
-
-                            <h3><a href="#">Best prices</a></h3>
-                            <p>Competitive pricing on all boards, modules, and
-                                components — updated daily.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="box same-height clickable">
-                            <div class="icon"><i class="fa fa-thumbs-up"></i>
-                            </div>
-
-                            <h3><a href="#">100% satisfaction guaranteed</a>
-                            </h3>
-                            <p>Free returns on most items. If you are not happy
-                              just ship it back to us.</p>
-                        </div>
-                    </div>
+                <div class="section-header">
+                    <h2>Shop by Category</h2>
+                    <a href="category.html">View all &rarr;</a>
                 </div>
-                <!-- /.row -->
-
+                <div class="category-grid">
+                    <a href="category.html?tags=Microcontroller" class="category-card">
+                        <i class="fa fa-cog"></i>
+                        <span>Microcontrollers</span>
+                    </a>
+                    <a href="category.html?tags=SBC" class="category-card">
+                        <i class="fa fa-desktop"></i>
+                        <span>Single Board Computers</span>
+                    </a>
+                    <a href="category.html?tags=WiFi" class="category-card">
+                        <i class="fa fa-signal"></i>
+                        <span>Wireless Modules</span>
+                    </a>
+                    <a href="category.html?tags=Sensor" class="category-card">
+                        <i class="fa fa-eye"></i>
+                        <span>Sensors</span>
+                    </a>
+                    <a href="category.html?tags=Tool" class="category-card">
+                        <i class="fa fa-wrench"></i>
+                        <span>Tools &amp; Accessories</span>
+                    </a>
+                    <a href="category.html?tags=Beginner" class="category-card">
+                        <i class="fa fa-graduation-cap"></i>
+                        <span>Beginner Kits</span>
+                    </a>
+                    <a href="category.html?tags=Display" class="category-card">
+                        <i class="fa fa-television"></i>
+                        <span>Displays &amp; Outputs</span>
+                    </a>
+                    <a href="category.html?tags=Motor" class="category-card">
+                        <i class="fa fa-cogs"></i>
+                        <span>Motors &amp; Actuators</span>
+                    </a>
+                    <a href="category.html?tags=Power" class="category-card">
+                        <i class="fa fa-bolt"></i>
+                        <span>Power Management</span>
+                    </a>
+                </div>
             </div>
-            <!-- /.container -->
-
         </div>
-        <!-- /#advantages -->
 
-        <!-- *** ADVANTAGES END *** -->
-
-        <!-- *** HOT PRODUCT SLIDESHOW ***
-_________________________________________________________ -->
+        <!-- HOT THIS WEEK -->
         <div id="hot">
-
             <div class="box">
                 <div class="container">
                     <div class="col-md-12">
@@ -131,18 +118,80 @@ _________________________________________________________ -->
                     </div>
                 </div>
             </div>
-
             <div class="container">
-                <div class="product-slider" id="hot-slider">
-                </div>
-                <!-- /.product-slider -->
+                <div class="product-slider" id="hot-slider"></div>
             </div>
-            <!-- /.container -->
-
         </div>
-        <!-- /#hot -->
 
-        <!-- *** HOT END *** -->
+        <!-- MICROCONTROLLERS -->
+        <div id="section-mcu" class="product-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Microcontrollers</h2>
+                </div>
+                <div class="product-slider" id="mcu-slider"></div>
+            </div>
+        </div>
+
+        <!-- SINGLE BOARD COMPUTERS -->
+        <div id="section-sbc" class="product-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Single Board Computers</h2>
+                </div>
+                <div class="product-slider" id="sbc-slider"></div>
+            </div>
+        </div>
+
+        <!-- SENSORS & MODULES -->
+        <div id="section-sensors" class="product-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Sensors &amp; Modules</h2>
+                </div>
+                <div class="product-slider" id="sensor-slider"></div>
+            </div>
+        </div>
+
+        <!-- WIRELESS & CONNECTIVITY -->
+        <div id="section-wireless" class="product-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Wireless &amp; Connectivity</h2>
+                </div>
+                <div class="product-slider" id="wireless-slider"></div>
+            </div>
+        </div>
+
+        <!-- DISPLAYS & OUTPUTS -->
+        <div id="section-display" class="product-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Displays &amp; Outputs</h2>
+                </div>
+                <div class="product-slider" id="display-slider"></div>
+            </div>
+        </div>
+
+        <!-- MOTORS & ACTUATORS -->
+        <div id="section-motors" class="product-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Motors &amp; Actuators</h2>
+                </div>
+                <div class="product-slider" id="motors-slider"></div>
+            </div>
+        </div>
+
+        <!-- POWER MANAGEMENT -->
+        <div id="section-power" class="product-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Power Management</h2>
+                </div>
+                <div class="product-slider" id="power-slider"></div>
+            </div>
+        </div>
 
     </div>
     <!-- /#content -->
@@ -153,8 +202,6 @@ _________________________________________________________ -->
 <!-- /#all -->
 
 
-<!-- *** SCRIPTS TO INCLUDE ***
-_________________________________________________________ -->
 <script src="js/jquery-1.11.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/js.cookie.js"></script>
@@ -169,11 +216,8 @@ _________________________________________________________ -->
 <script>
 
     $(document).ready(function () {
-        $.ajaxSetup({
-            contentType: "application/json; charset=utf-8"
-        });
+        $.ajaxSetup({ contentType: "application/json; charset=utf-8" });
 
-        console.log("Loading components for index.html");
         $("#topbar").load("topbar.html");
         $("#navbar").load("navbar.html");
         $("#footer").load("footer.html");
@@ -182,7 +226,7 @@ _________________________________________________________ -->
         var currency = localStorage.getItem('soqoniCurrency') || 'USD';
         var symbol   = CURRENCY_SYMBOLS[currency] || '$';
 
-        // Init main slider immediately (doesn't need catalogue data)
+        // Main banner slider
         $('#main-slider').owlCarousel({
             navigation: false,
             slideSpeed: 400,
@@ -193,7 +237,48 @@ _________________________________________________________ -->
             pagination: true
         });
 
-        $.getJSON('/catalogue', {size: 8, currency: currency}, function (data) {
+        // Build product card HTML (no badge variant)
+        function cardHtml(el, sym) {
+            return '<div class="item">' +
+                '<div class="product">' +
+                '<div class="product-img-wrap">' +
+                '<a href="detail.html?id=' + el.id + '">' +
+                '<img src="' + el.imageUrl[0] + '" alt="' + el.name + '">' +
+                '</a>' +
+                '<div class="hover-cart">' +
+                '<a href="#" onclick="addToCart(\'' + el.id + '\');return false;" class="btn">' +
+                '<i class="fa fa-shopping-cart"></i> Add to cart</a>' +
+                '</div>' +
+                '</div>' +
+                '<div class="text">' +
+                '<div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>' +
+                '<h3><a href="detail.html?id=' + el.id + '">' + el.name + '</a></h3>' +
+                '<p class="price">' + sym + el.price.toFixed(2) + '</p>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+        }
+
+        // Init an owl carousel on a given #id string
+        function initCarousel(id) {
+            $(id).owlCarousel({
+                navigation: true,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                items: 5,
+                itemsDesktop: [1199, 5],
+                itemsDesktopSmall: [979, 5],
+                itemsTablet: [768, 5],
+                itemsMobile: [479, 5],
+                pagination: false,
+                afterInit: function () {
+                    $(id + ' .item').css('visibility', 'visible');
+                }
+            });
+        }
+
+        // Hot this week (with Best Seller badge)
+        $.getJSON('/catalogue', {size: 12, currency: currency}, function (data) {
             if (data != null) {
                 $.each(data, function (index, element) {
                     $('#hot-slider').append(
@@ -205,11 +290,12 @@ _________________________________________________________ -->
                         '<img src="' + element.imageUrl[0] + '" alt="' + element.name + '">' +
                         '</a>' +
                         '<div class="hover-cart">' +
-                        '<a href="#" onclick="addToCart(\'' + element.id + '\');return false;" class="btn"><i class="fa fa-shopping-cart"></i> Add to cart</a>' +
+                        '<a href="#" onclick="addToCart(\'' + element.id + '\');return false;" class="btn">' +
+                        '<i class="fa fa-shopping-cart"></i> Add to cart</a>' +
                         '</div>' +
                         '</div>' +
                         '<div class="text">' +
-                        '<div class="product-stars">★★★★★</div>' +
+                        '<div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>' +
                         '<h3><a href="detail.html?id=' + element.id + '">' + element.name + '</a></h3>' +
                         '<p class="price">' + symbol + element.price.toFixed(2) + '</p>' +
                         '</div>' +
@@ -217,23 +303,81 @@ _________________________________________________________ -->
                         '</div>'
                     );
                 });
-                $('.product-slider').owlCarousel({
-                    navigation: true,
-                    slideSpeed: 300,
-                    paginationSpeed: 400,
-                    items: 6,
-                    itemsDesktop: [1199, 6],
-                    itemsDesktopSmall: [979, 5],
-                    itemsTablet: [768, 2],
-                    itemsMobile: [479, 1],
-                    pagination: true,
-                    afterInit: function () {
-                        $('.product-slider .item').css('visibility', 'visible');
-                    }
-                });
+                initCarousel('#hot-slider');
             }
         });
-    })
+
+        // Microcontrollers section
+        $.getJSON('/catalogue', {size: 12, tags: 'Microcontroller', currency: currency}, function (data) {
+            if (data && data.length) {
+                $.each(data, function (i, el) { $('#mcu-slider').append(cardHtml(el, symbol)); });
+                initCarousel('#mcu-slider');
+            } else {
+                $('#section-mcu').hide();
+            }
+        });
+
+        // Single Board Computers section
+        $.getJSON('/catalogue', {size: 12, tags: 'SBC', currency: currency}, function (data) {
+            if (data && data.length) {
+                $.each(data, function (i, el) { $('#sbc-slider').append(cardHtml(el, symbol)); });
+                initCarousel('#sbc-slider');
+            } else {
+                $('#section-sbc').hide();
+            }
+        });
+
+        // Sensors & Modules section
+        $.getJSON('/catalogue', {size: 12, tags: 'Sensor', currency: currency}, function (data) {
+            if (data && data.length) {
+                $.each(data, function (i, el) { $('#sensor-slider').append(cardHtml(el, symbol)); });
+                initCarousel('#sensor-slider');
+            } else {
+                $('#section-sensors').hide();
+            }
+        });
+
+        // Wireless & Connectivity section
+        $.getJSON('/catalogue', {size: 12, tags: 'Wireless', currency: currency}, function (data) {
+            if (data && data.length) {
+                $.each(data, function (i, el) { $('#wireless-slider').append(cardHtml(el, symbol)); });
+                initCarousel('#wireless-slider');
+            } else {
+                $('#section-wireless').hide();
+            }
+        });
+
+        // Displays & Outputs section
+        $.getJSON('/catalogue', {size: 12, tags: 'Display', currency: currency}, function (data) {
+            if (data && data.length) {
+                $.each(data, function (i, el) { $('#display-slider').append(cardHtml(el, symbol)); });
+                initCarousel('#display-slider');
+            } else {
+                $('#section-display').hide();
+            }
+        });
+
+        // Motors & Actuators section
+        $.getJSON('/catalogue', {size: 12, tags: 'Motor', currency: currency}, function (data) {
+            if (data && data.length) {
+                $.each(data, function (i, el) { $('#motors-slider').append(cardHtml(el, symbol)); });
+                initCarousel('#motors-slider');
+            } else {
+                $('#section-motors').hide();
+            }
+        });
+
+        // Power Management section
+        $.getJSON('/catalogue', {size: 12, tags: 'Power', currency: currency}, function (data) {
+            if (data && data.length) {
+                $.each(data, function (i, el) { $('#power-slider').append(cardHtml(el, symbol)); });
+                initCarousel('#power-slider');
+            } else {
+                $('#section-power').hide();
+            }
+        });
+    });
+
 </script>
 </body>
 
