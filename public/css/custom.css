@@ -303,47 +303,44 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     height: 100%;
     width: 100%;
 }
-/* Hover "Add to cart" overlay on product image */
+/* Hover bar — slides up from bottom, contains cart + heart */
 .product-img-wrap .hover-cart {
     position: absolute;
     bottom: -44px;
     left: 0;
     right: 0;
     background: rgba(10, 30, 70, 0.82);
-    text-align: center;
-    padding: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 8px;
     transition: bottom 0.18s ease;
     z-index: 5;
 }
 .product-img-wrap:hover .hover-cart { bottom: 0; }
 .product-img-wrap .hover-cart .btn {
+    flex: 1;
     font-size: 12px;
-    padding: 4px 10px;
+    padding: 4px 8px;
     background: #0a5bbf;
     border-color: #0a5bbf;
     color: #fff;
     border-radius: 1px;
+    white-space: nowrap;
 }
 .product-img-wrap .hover-cart .btn:hover { background: #094fa3; }
-
-/* Heart wishlist — corner overlay, appears on image hover */
-.wish-corner-btn {
-    position: absolute;
-    top: 6px; right: 6px;
-    width: 26px; height: 26px;
-    background: rgba(10, 30, 70, 0.82);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: #ccc;
-    font-size: 13px;
-    opacity: 0;
-    transition: opacity 0.18s ease;
-    z-index: 6;
+/* Heart icon inside hover bar — no background, just the icon */
+.hover-cart .wish-btn {
+    flex: 0 0 auto;
+    color: #aaa;
+    font-size: 15px;
     text-decoration: none;
+    padding: 0 2px;
+    transition: color 0.15s;
+    line-height: 1;
 }
-.product-img-wrap:hover .wish-corner-btn { opacity: 1; }
-.wish-corner-btn:hover { background: rgba(10, 30, 70, 1); color: #fff; }
-.wish-corner-btn.wishlisted { color: #e74c3c; }
+.hover-cart .wish-btn:hover { color: #fff; }
+.hover-cart .wish-btn.wishlisted { color: #e74c3c; }
 
 /* Keep flip-container working on category page */
 .flip-container {

@@ -211,8 +211,8 @@ _________________________________________________________ -->
                     '</a>' +
                     '<div class="hover-cart">' +
                     '<a href="#" onclick="addToCart(\'' + el.id + '\');return false;" class="btn"><i class="fa fa-shopping-cart"></i> Add to cart</a>' +
+                    '<a href="#" class="wish-btn' + (inWish ? ' wishlisted' : '') + '" data-id="' + el.id + '" title="Wishlist"><i class="fa ' + (inWish ? 'fa-heart' : 'fa-heart-o') + '"></i></a>' +
                     '</div>' +
-                    '<a href="#" class="wish-corner-btn' + (inWish ? ' wishlisted' : '') + '" data-id="' + el.id + '" title="Wishlist"><i class="fa ' + (inWish ? 'fa-heart' : 'fa-heart-o') + '"></i></a>' +
                     '</div>' +
                     '<div class="text">' +
                     '<div class="product-stars">★★★★★</div>' +
@@ -226,7 +226,7 @@ _________________________________________________________ -->
         });
 
         // Wishlist toggle from category grid
-        $(document).on('click', '.wish-corner-btn', function(e) {
+        $(document).on('click', '.wish-btn', function(e) {
             e.preventDefault();
             var id   = $(this).data('id');
             var list = JSON.parse(localStorage.getItem('soqoniWishlist') || '[]');
