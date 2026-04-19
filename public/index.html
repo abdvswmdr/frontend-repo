@@ -237,8 +237,12 @@
             pagination: true
         });
 
+        var _wl = JSON.parse(localStorage.getItem('soqoniWishlist') || '[]');
+
         // Build product card HTML (no badge variant)
         function cardHtml(el, sym) {
+            var inWish = _wl.indexOf(el.id) > -1;
+            var heartCls = inWish ? 'fa fa-heart' : 'fa fa-heart-o';
             return '<div class="item">' +
                 '<div class="product">' +
                 '<div class="product-img-wrap">' +
@@ -246,8 +250,9 @@
                 '<img src="' + el.imageUrl[0] + '" alt="' + el.name + '">' +
                 '</a>' +
                 '<div class="hover-cart">' +
-                '<a href="#" onclick="addToCart(\'' + el.id + '\');return false;" class="btn">' +
+                '<a href="#" onclick="addToCart(\'' + el.id + '\');return false;" class="btn hover-cart-btn">' +
                 '<i class="fa fa-shopping-cart"></i> Add to cart</a>' +
+                '<a href="#" class="btn hover-wish-btn" data-id="' + el.id + '" title="Wishlist"><i class="' + heartCls + '"></i></a>' +
                 '</div>' +
                 '</div>' +
                 '<div class="text">' +
