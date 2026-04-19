@@ -51,12 +51,9 @@
         <div class="container">
 
             <div class="col-md-12">
-                <ul class="breadcrumb">
-                    <li><a href="/">Home</a>
-                    </li>
-                    <li><a href="category.html">Catalogue</a>
-                    </li>
-                    <li id="breadcrumb"></li>
+                <ul class="breadcrumb" id="detail-breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="category.html">Catalogue</a></li>
                 </ul>
 
             </div>
@@ -75,12 +72,19 @@
                     <div class="col-sm-6">
                         <div class="box">
                             <h1 id="title"></h1>
-                            <p id="price" class="price"></p>
+                            <div id="detail-rating" style="color:#f5a623; font-size:18px; margin-bottom:4px;">★★★★★ <small class="text-muted" style="font-size:12px;" id="rating-count"></small></div>
+                            <p id="price" class="price" style="font-size:22px; margin:6px 0;"></p>
+                            <p id="availability" style="margin:4px 0; font-size:13px;"></p>
+
+                            <div class="qty-row" style="display:flex; align-items:center; gap:8px; margin:10px 0;">
+                                <button class="btn btn-default btn-sm" id="qty-minus" onclick="changeQty(-1)">−</button>
+                                <input type="number" id="qty-input" value="1" min="1" class="form-control" style="width:55px; text-align:center; padding:4px;">
+                                <button class="btn btn-default btn-sm" id="qty-plus" onclick="changeQty(1)">+</button>
+                            </div>
 
                             <p class="buttons">
                                 <a id="buttonCart" class="btn btn-primary"><i
-                                        class="fa fa-shopping-cart"></i> Add to
-                                    cart</a>
+                                        class="fa fa-shopping-cart"></i> Add to cart</a>
                                 <a id="buttonWishlist" href="#" class="btn btn-default"><i
                                         class="fa fa-heart"></i> Add to wishlist</a>
                             </p>
