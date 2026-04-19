@@ -181,23 +181,24 @@ _________________________________________________________ -->
 
         <div class="navbar-buttons">
 
-            <!-- Search bar (cosmetic — search feature coming soon) -->
+            <!-- Search bar -->
             <div class="navbar-collapse collapse right navbar-search-wrap hidden-xs hidden-sm">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search products...">
                     <span class="input-group-btn">
-                        <button class="btn" type="button"><i class="fa fa-search"></i></button>
+                        <button class="navbar-icon-btn" type="button"><i class="fa fa-search"></i></button>
                     </span>
                 </div>
             </div>
 
             <div class="navbar-collapse collapse right" id="basket-overview">
-                <a href="customer-account.html" class="btn btn-default navbar-btn navbar-user-btn" title="Account">
+                <a href="customer-account.html" class="navbar-icon-btn" title="Account">
                     <i class="fa fa-user"></i>
                 </a>
-                <a href="basket.html" class="btn btn-primary navbar-btn"><i
-                        class="fa fa-shopping-cart"></i><span class="hidden-sm"
-                                                              id="numItemsInCart">0 items in cart</span></a>
+                <a href="basket.html" class="navbar-cart-btn" title="Cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class="cart-badge" id="numItemsInCart">0</span>
+                </a>
             </div>
             <!--/.nav-collapse -->
 
@@ -234,9 +235,6 @@ _________________________________________________________ -->
 
 <!-- *** NAVBAR END *** -->
 
-<style>
-.navbar-user-btn { margin-right: 4px; }
-</style>
 
 <script>
     $(document).ready(function () {
@@ -256,7 +254,7 @@ _________________________________________________________ -->
                         $.getJSON('/catalogue/' + element.itemId, function (data) {
                             numItemsInCart = numItemsInCart + element.quantity;
                         }).always(function () {
-                            $('#numItemsInCart').text(numItemsInCart + ' item(s) in cart');
+                            $('#numItemsInCart').text(numItemsInCart);
                         });
                     }
                 });

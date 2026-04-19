@@ -303,7 +303,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     height: 100%;
     width: 100%;
 }
-/* Hover bar — slides up from bottom, contains cart + heart */
+/* Hover bar — slides up from bottom, contains cart text + heart */
 .product-img-wrap .hover-cart {
     position: absolute;
     bottom: -44px;
@@ -312,35 +312,78 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     background: rgba(10, 30, 70, 0.82);
     display: flex;
     align-items: center;
-    gap: 4px;
-    padding: 6px 8px;
+    justify-content: center;
+    gap: 8px;
+    padding: 7px 8px;
     transition: bottom 0.18s ease;
     z-index: 5;
 }
 .product-img-wrap:hover .hover-cart { bottom: 0; }
-.product-img-wrap .hover-cart .btn {
-    flex: 1;
-    font-size: 12px;
-    padding: 4px 8px;
-    background: #0a5bbf;
-    border-color: #0a5bbf;
+.hover-cart .cart-link {
     color: #fff;
-    border-radius: 1px;
+    font-size: 12px;
+    text-decoration: none;
     white-space: nowrap;
 }
-.product-img-wrap .hover-cart .btn:hover { background: #094fa3; }
-/* Heart icon inside hover bar — no background, just the icon */
+.hover-cart .cart-link:hover { color: #c8d8f8; text-decoration: none; }
+/* Heart icon inside hover bar */
 .hover-cart .wish-btn {
     flex: 0 0 auto;
     color: #aaa;
-    font-size: 15px;
+    font-size: 14px;
     text-decoration: none;
-    padding: 0 2px;
-    transition: color 0.15s;
     line-height: 1;
+    transition: color 0.15s;
 }
 .hover-cart .wish-btn:hover { color: #fff; }
 .hover-cart .wish-btn.wishlisted { color: #e74c3c; }
+
+/* Navbar icon buttons — no box, just icon */
+.navbar-icon-btn {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #1a2a4a !important;
+    font-size: 16px;
+    padding: 4px 6px !important;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+.navbar-icon-btn:hover { color: #0a5bbf !important; background: none !important; }
+
+/* Cart icon with badge count */
+.navbar-cart-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    color: #1a2a4a !important;
+    font-size: 18px;
+    padding: 4px 6px !important;
+    text-decoration: none;
+    background: none !important;
+    border: none !important;
+}
+.navbar-cart-btn:hover { color: #0a5bbf !important; text-decoration: none; }
+.cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -2px;
+    min-width: 16px;
+    height: 16px;
+    background: #e8632a;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+    line-height: 1;
+}
 
 /* Keep flip-container working on category page */
 .flip-container {
