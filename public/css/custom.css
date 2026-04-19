@@ -326,9 +326,10 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     white-space: nowrap;
 }
 .hover-cart .cart-link:hover { color: #c8d8f8; text-decoration: none; }
-/* Heart icon inside hover bar */
+/* Heart icon — absolutely positioned so it doesn't shift cart text */
 .hover-cart .wish-btn {
-    flex: 0 0 auto;
+    position: absolute;
+    right: 8px;
     color: #aaa;
     font-size: 14px;
     text-decoration: none;
