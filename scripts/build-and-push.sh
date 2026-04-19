@@ -42,6 +42,8 @@ if [ "$LOCAL_ONLY" = true ]; then
     patch_manifests
     echo "==> Applying manifest"
     kubectl apply -f "$K8S_DIR/frontend.yaml"
+    echo "==> Setting imagePullPolicy=Never for local image"
+    kubectl patch deployment frontend -p '{"spec":{"template":{"spec":{"containers":[{"name":"frontend","imagePullPolicy":"Never"}]}}}}'
     echo "==> Restarting deployment to pick up new image"
     kubectl rollout restart deployment/frontend
     kubectl rollout status deployment/frontend

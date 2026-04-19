@@ -154,9 +154,12 @@ function addToCart(id) {
             console.log('Item added: ' + id + ', ' + textStatus);
             location.reload();
         },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.error('Could not add item: ' + id + ', due to: ' + textStatus + ' | ' + errorThrown);
-            showCartToast('Could not add to cart — cart service unavailable.', 'error');
+        error: function (jqXHR) {
+            if (jqXHR.status === 409) {
+                showCartToast('This item is out of stock.', 'error');
+            } else {
+                showCartToast('Could not add to cart — cart service unavailable.', 'error');
+            }
         }
     });
 }

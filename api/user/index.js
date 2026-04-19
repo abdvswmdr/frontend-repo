@@ -45,6 +45,28 @@ app.post('/logout', function(req, res) {
     res.status(200).json({ ok: true });
 });
 
+// PUT /me — update personal details
+app.put('/me', function(req, res, next) {
+    var userId = req.session && req.session.customerId;
+    if (!userId) return res.status(401).json({ error: 'not logged in' });
+
+    request.put({ url: AUTH_URL + '/customers/' + userId, json: true, body: req.body }, function(err, authRes, body) {
+        if (err) return next(err);
+        res.status(authRes.statusCode).json(body);
+    });
+});
+
+// PUT /me/password — change password
+app.put('/me/password', function(req, res, next) {
+    var userId = req.session && req.session.customerId;
+    if (!userId) return res.status(401).json({ error: 'not logged in' });
+
+    request.put({ url: AUTH_URL + '/customers/' + userId + '/password', json: true, body: req.body }, function(err, authRes, body) {
+        if (err) return next(err);
+        res.status(authRes.statusCode).json(body);
+    });
+});
+
 // GET /me — check session, fetch user details from soqoniauth
 app.get('/me', function(req, res, next) {
     var userId = req.session && req.session.customerId;

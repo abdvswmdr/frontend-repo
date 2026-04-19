@@ -140,7 +140,7 @@ _________________________________________________________ -->
     var CURRENCY_SYMBOLS = { USD: '$', KES: 'KSh ', EUR: '€' };
 
     function soqoniGetCurrency() {
-        return localStorage.getItem('soqoniCurrency') || 'USD';
+        return localStorage.getItem('soqoniCurrency') || 'KES';
     }
 
     function soqoniSetCurrency(val) {
@@ -163,7 +163,7 @@ _________________________________________________________ -->
         });
 
         // Set dropdown to stored value immediately on topbar load
-        var stored = localStorage.getItem('soqoniCurrency') || 'USD';
+        var stored = localStorage.getItem('soqoniCurrency') || 'KES';
         $('#currency-select').val(stored);
 
         if ($.cookie('logged_in') != null && $.cookie('logged_in') != "") {

@@ -80,6 +80,9 @@
           });
         },
         function (item, callback) {
+          if (item.count !== undefined && item.count === 0) {
+            return callback(new Error("out_of_stock"));
+          }
           var options = {
             uri: endpoints.cartsUrl + "/" + custId + "/items",
             method: 'POST',
@@ -89,18 +92,33 @@
           console.log("POST to carts: " + options.uri + " body: " + JSON.stringify(options.body));
           request(options, function (error, response, body) {
             if (error) {
-              callback(error)
-                return;
+              callback(error);
+              return;
             }
-            callback(null, response.statusCode);
+            callback(null, response.statusCode, item.id);
           });
+        },
+        function (cartStatus, itemId, callback) {
+          if (cartStatus !== 201) {
+            return callback(null, cartStatus);
+          }
+          // Decrement stock after successful add-to-cart
+          request({ uri: endpoints.catalogueUrl + "/catalogue/" + itemId + "/stock", method: 'PUT' },
+            function (error) {
+              if (error) { console.warn("stock decrement failed:", error.message); }
+              callback(null, cartStatus);
+            });
         }
     ], function (err, statusCode) {
       if (err) {
+        if (err.message === "out_of_stock") {
+          res.status(409).json({ error: "This item is out of stock." });
+          return;
+        }
         return next(err);
       }
       if (statusCode != 201) {
-        return next(new Error("Unable to add to cart. Status code: " + statusCode))
+        return next(new Error("Unable to add to cart. Status code: " + statusCode));
       }
       helpers.respondStatus(res, statusCode);
     });

@@ -356,6 +356,13 @@ _________________________________________________________ -->
 		next();
 	}
 
+    var _BASKET_RATES   = { USD: 1.0, KES: 130.0, EUR: 0.92 };
+    var _BASKET_SYMBOLS = { USD: '$', KES: 'KSh ', EUR: '€' };
+    var _bCur  = localStorage.getItem('soqoniCurrency') || 'KES';
+    var _bRate = _BASKET_RATES[_bCur]   || 130.0;
+    var _bSym  = _BASKET_SYMBOLS[_bCur] || 'KSh ';
+    function _bFmt(usdPrice) { return _bSym + (usdPrice * _bRate).toFixed(2); }
+
     $(document).ready(function () {
         $.ajaxSetup({
             contentType: "application/json; charset=utf-8"
@@ -384,9 +391,9 @@ _________________________________________________________ -->
                                                 <td id="' + element.itemId + '">\
                                                     <input type="number" min="1" value="' + element.quantity + '" class="form-control">\
                                                 </td>\
-                                                <td>$' + data.price.toFixed(2) + '</td>\
-                                                <td>$0.00</td>\
-                                                <td>$' + (element.quantity * data.price).toFixed(2) + '</td>\
+                                                <td>' + _bFmt(data.price) + '</td>\
+                                                <td>' + _bSym + '0.00</td>\
+                                                <td>' + _bFmt(element.quantity * data.price) + '</td>\
                                                 <td>\
                                                     <a href="#" onclick="deleteFromCart(\'' + data.id + '\')"><i class="fa fa-trash-o"></i></a>\
                                                 </td>\
@@ -413,10 +420,10 @@ _________________________________________________________ -->
                                 });
                             }
                             $('#numItemsInCart').text('You currently have ' + numItemsInCart + ' item(s) in your cart.');
-                            $('#cartTotal').text('$' + cartTotal.toFixed(2));
-                            $('#orderSubtotal').text('$' + cartTotal.toFixed(2));
-                            $('#orderShipping').text('$' + shipping.toFixed(2));
-                            $('#orderGrandTotal').text('$' + (cartTotal + shipping).toFixed(2));
+                            $('#cartTotal').text(_bFmt(cartTotal));
+                            $('#orderSubtotal').text(_bFmt(cartTotal));
+                            $('#orderShipping').text(_bFmt(shipping / _bRate));
+                            $('#orderGrandTotal').text(_bFmt(cartTotal + shipping / _bRate));
                         });
                     }
                 });
@@ -477,7 +484,7 @@ _________________________________________________________ -->
                                     </a>\
                                     <div class="text">\
                                         <h3><a href="detail.html?id=' + element.id + '">' + element.name + '</a></h3>\
-                                        <p class="price">$' + element.price + '</p>\
+                                        <p class="price">' + _bFmt(element.price) + '</p>\
                                     </div>\
                                 </div>\
                             </div>'
