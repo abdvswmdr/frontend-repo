@@ -89,33 +89,13 @@ _________________________________________________________ -->
             </div>
 
             <div class="col-md-10">
-                <div class="box info-bar">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-4 products-showing">
-                            <div id="totalProducts"></div>
-                        </div>
-
-                        <div class="col-sm-12 col-md-8  products-number-sort">
-                            <div class="row">
-                                <form class="form-inline">
-                                    <div class="col-md-6 col-sm-6">
-                                        <div id="products-number" class="products-number">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <div class="products-sort-by">
-                                            <strong>Sort by</strong>
-                                            <select name="sort-by"
-                                                    class="form-control">
-                                                <option>Price</option>
-                                                <option>Name</option>
-                                                <option>Sales first</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                <div class="box info-bar" style="padding:6px 12px; margin-bottom:8px;">
+                    <div class="pull-right">
+                        <strong style="font-size:12px;">Sort by</strong>
+                        <select name="sort-by" id="sort-select" class="form-control input-sm" style="display:inline-block;width:auto;">
+                            <option value="price">Price</option>
+                            <option value="id">Name</option>
+                        </select>
                     </div>
                 </div>
 
@@ -126,15 +106,9 @@ _________________________________________________________ -->
                 </div>
                 <!-- /.products -->
 
-                <div class="pages">
-
-                    <!--<p class="loadMore">-->
-                    <!--<a href="#" class="btn btn-primary btn-lg"><i-->
-                    <!--class="fa fa-chevron-down"></i> Load more</a>-->
-                    <!--</p>-->
-
-                    <ul id="pagination" class="pagination">
-                    </ul>
+                <div class="pages" style="display:flex; align-items:center; justify-content:space-between; margin-top:10px;">
+                    <ul id="pagination" class="pagination" style="margin:0;"></ul>
+                    <small id="totalProducts" class="text-muted" style="white-space:nowrap;"></small>
                 </div>
 
 
