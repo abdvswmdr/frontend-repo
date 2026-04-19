@@ -255,10 +255,7 @@ var KENYA_TOWNS = {
 function populateCounties() {
     var sel = document.getElementById('county');
     Object.keys(KENYA_TOWNS).sort().forEach(function(county) {
-        var opt = document.createElement('option');
-        opt.value = county;
-        opt.textContent = county;
-        sel.appendChild(opt);
+        sel.appendChild(new Option(county, county));
     });
 }
 
@@ -268,9 +265,7 @@ function populateTowns(selectedTown) {
     townSel.innerHTML = '<option value="">— Select town —</option>';
     if (!county || !KENYA_TOWNS[county]) return;
     KENYA_TOWNS[county].forEach(function(town) {
-        var opt = document.createElement('option');
-        opt.value = town;
-        opt.textContent = town;
+        var opt = new Option(town, town);
         if (town === selectedTown) opt.selected = true;
         townSel.appendChild(opt);
     });
