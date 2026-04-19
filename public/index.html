@@ -239,6 +239,8 @@
 
         var _wl = JSON.parse(localStorage.getItem('soqoniWishlist') || '[]');
 
+        var _wl = JSON.parse(localStorage.getItem('soqoniWishlist') || '[]');
+
         // Build product card HTML (no badge variant)
         function cardHtml(el, sym) {
             var inWish = _wl.indexOf(el.id) > -1;
@@ -250,10 +252,10 @@
                 '<img src="' + el.imageUrl[0] + '" alt="' + el.name + '">' +
                 '</a>' +
                 '<div class="hover-cart">' +
-                '<a href="#" onclick="addToCart(\'' + el.id + '\');return false;" class="btn hover-cart-btn">' +
+                '<a href="#" onclick="addToCart(\'' + el.id + '\');return false;" class="btn">' +
                 '<i class="fa fa-shopping-cart"></i> Add to cart</a>' +
-                '<a href="#" class="btn hover-wish-btn" data-id="' + el.id + '" title="Wishlist"><i class="' + heartCls + '"></i></a>' +
                 '</div>' +
+                '<a href="#" class="wish-corner-btn' + (inWish ? ' wishlisted' : '') + '" data-id="' + el.id + '" title="Wishlist"><i class="' + heartCls + '"></i></a>' +
                 '</div>' +
                 '<div class="text">' +
                 '<div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>' +
@@ -286,6 +288,7 @@
         $.getJSON('/catalogue', {size: 12, currency: currency}, function (data) {
             if (data != null) {
                 $.each(data, function (index, element) {
+                    var inWish = _wl.indexOf(element.id) > -1;
                     $('#hot-slider').append(
                         '<div class="item">' +
                         '<div class="product">' +
@@ -298,6 +301,7 @@
                         '<a href="#" onclick="addToCart(\'' + element.id + '\');return false;" class="btn">' +
                         '<i class="fa fa-shopping-cart"></i> Add to cart</a>' +
                         '</div>' +
+                        '<a href="#" class="wish-corner-btn' + (inWish ? ' wishlisted' : '') + '" data-id="' + element.id + '" title="Wishlist"><i class="fa ' + (inWish ? 'fa-heart' : 'fa-heart-o') + '"></i></a>' +
                         '</div>' +
                         '<div class="text">' +
                         '<div class="product-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>' +
@@ -380,6 +384,22 @@
             } else {
                 $('#section-power').hide();
             }
+        });
+
+        // Wishlist toggle for all cards on this page
+        $(document).on('click', '.wish-corner-btn', function(e) {
+            e.preventDefault();
+            var id   = $(this).data('id');
+            var list = JSON.parse(localStorage.getItem('soqoniWishlist') || '[]');
+            var idx  = list.indexOf(id);
+            if (idx > -1) {
+                list.splice(idx, 1);
+                $(this).removeClass('wishlisted').find('i').removeClass('fa-heart').addClass('fa-heart-o');
+            } else {
+                list.push(id);
+                $(this).addClass('wishlisted').find('i').removeClass('fa-heart-o').addClass('fa-heart');
+            }
+            localStorage.setItem('soqoniWishlist', JSON.stringify(list));
         });
     });
 

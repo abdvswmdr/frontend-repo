@@ -325,10 +325,25 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     border-radius: 1px;
 }
 .product-img-wrap .hover-cart .btn:hover { background: #094fa3; }
-.product-img-wrap .hover-cart { display: flex; align-items: center; justify-content: center; gap: 5px; }
-.hover-wish-btn { flex: 0 0 auto; padding: 4px 8px !important; background: rgba(255,255,255,0.15) !important; border-color: transparent !important; min-width: 0; }
-.hover-wish-btn:hover { background: rgba(255,255,255,0.3) !important; }
-.hover-wish-btn .fa { font-size: 13px; line-height: 1; }
+
+/* Heart wishlist — corner overlay, appears on image hover */
+.wish-corner-btn {
+    position: absolute;
+    top: 6px; right: 6px;
+    width: 26px; height: 26px;
+    background: rgba(10, 30, 70, 0.82);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #ccc;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    z-index: 6;
+    text-decoration: none;
+}
+.product-img-wrap:hover .wish-corner-btn { opacity: 1; }
+.wish-corner-btn:hover { background: rgba(10, 30, 70, 1); color: #fff; }
+.wish-corner-btn.wishlisted { color: #e74c3c; }
 
 /* Keep flip-container working on category page */
 .flip-container {
