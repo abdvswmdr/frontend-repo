@@ -43,6 +43,7 @@ function register() {
     $.ajax({
         url: "register",
         type: "POST",
+        contentType: 'application/json; charset=utf-8',
         async: false,
 	data: postvals,
         success: function (data, textStatus, jqXHR) {
@@ -78,6 +79,10 @@ function setNewPage(value) {
 
 function setNewTags(value) {
     location.search = $.query.set("tags", value);
+}
+
+function setNewSort(value) {
+    location.search = $.query.set("sort", value);
 }
 
 function resetTags() {
