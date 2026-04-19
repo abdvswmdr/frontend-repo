@@ -325,11 +325,10 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     border-radius: 1px;
 }
 .product-img-wrap .hover-cart .btn:hover { background: #094fa3; }
-.product-img-wrap .hover-cart { display: flex; align-items: center; justify-content: center; gap: 4px; }
-.hover-cart-btn { flex: 1; }
-.hover-wish-btn { flex: 0 0 auto; padding: 4px 8px !important; background: rgba(255,255,255,0.12) !important; border-color: transparent !important; }
-.hover-wish-btn:hover { background: rgba(255,255,255,0.25) !important; }
-.hover-wish-btn .fa { font-size: 14px; }
+.product-img-wrap .hover-cart { display: flex; align-items: center; justify-content: center; gap: 5px; }
+.hover-wish-btn { flex: 0 0 auto; padding: 4px 8px !important; background: rgba(255,255,255,0.15) !important; border-color: transparent !important; min-width: 0; }
+.hover-wish-btn:hover { background: rgba(255,255,255,0.3) !important; }
+.hover-wish-btn .fa { font-size: 13px; line-height: 1; }
 
 /* Keep flip-container working on category page */
 .flip-container {
