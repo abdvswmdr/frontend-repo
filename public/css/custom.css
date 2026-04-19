@@ -329,7 +329,8 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
     position: absolute;
     left: 8px;
     top: 50%;
-    transform: translateY(-20%);
+    transform: translateY(-50%);
+    transform: translateX(-20%);
     color: #aaa;
     font-size: 14px;
     text-decoration: none;
