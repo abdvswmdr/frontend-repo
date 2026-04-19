@@ -169,12 +169,46 @@ _________________________________________________________ -->
         var currency = localStorage.getItem('soqoniCurrency') || 'USD';
         var symbol   = CURRENCY_SYMBOLS[currency] || '$';
 
+        var productCount = 1;
+        window.changeQty = function(delta) {
+            var max = window._stockCount || 99;
+            productCount = Math.max(1, Math.min(max, productCount + delta));
+            $('#qty-input').val(productCount);
+        };
+        $('#qty-input').on('change', function() {
+            var max = window._stockCount || 99;
+            productCount = Math.max(1, Math.min(max, parseInt($(this).val()) || 1));
+            $(this).val(productCount);
+        });
+
         $.getJSON('/catalogue/' + id, {currency: currency}, function (data) {
             $("#title").text(data.name);
-            $("#breadcrumb").text(data.name);
             $("#price").text(symbol + data.price.toFixed(2));
             $("#imageMain").attr("src", data.imageUrl[0]);
-            $("#buttonCart").attr("onClick", "addToCart(\'" + data.id + "\')");
+
+            // Breadcrumb: Home > Catalogue > [tag] > Product name
+            var tag = data.tag && data.tag[0] ? data.tag[0] : null;
+            if (tag) {
+                $('#detail-breadcrumb').append('<li><a href="category.html?tags=' + encodeURIComponent(tag) + '">' + tag + '</a></li>');
+            }
+            $('#detail-breadcrumb').append('<li>' + data.name + '</li>');
+
+            // Rating count proxy (use count as a stand-in)
+            var reviews = data.count ? Math.min(data.count * 3, 999) : 0;
+            if (reviews > 0) $('#rating-count').text(reviews + ' ratings');
+
+            // Availability
+            window._stockCount = data.count;
+            if (data.count > 0) {
+                $('#availability').html('<span style="color:#27ae60;"><i class="fa fa-check-circle"></i> In Stock</span> <span class="text-muted">(' + data.count + ' units)</span>');
+                $('#qty-plus').prop('disabled', false);
+            } else {
+                $('#availability').html('<span style="color:#c0392b;"><i class="fa fa-times-circle"></i> Out of Stock</span>');
+                $('#buttonCart').addClass('disabled').attr('onclick', null);
+                $('#qty-minus, #qty-plus, #qty-input').prop('disabled', true);
+            }
+
+            $("#buttonCart").attr("onClick", "addToCart(\'" + data.id + "\', parseInt($('#qty-input').val()))");
             var wl = JSON.parse(localStorage.getItem('soqoniWishlist') || '[]');
             if (wl.indexOf(data.id) > -1) {
                 $("#buttonWishlist").html('<i class="fa fa-heart"></i> In wishlist').addClass('active');
