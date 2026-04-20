@@ -464,6 +464,7 @@ h1, h2, h3, h4, h5 { font-weight: 600; }
 /* Carousel dots centered */
 .owl-controls .owl-pagination { text-align: center !important; }
 
+
 /* Price */
 .product .text .price,
 .product .text p.price {
@@ -711,10 +712,36 @@ html, body { margin-bottom: 0 !important; padding-bottom: 0 !important; }
 .product-slider { margin: 0 -5px; }
 
 /* ── Pagination ─────────────────────────────────────── */
-.pagination { margin: 8px 0 4px !important; }
+.pagination { margin: 8px 0 2px !important; }
 .pagination > li > a { color: #0a5bbf; border-color: #d0d8e8; }
 .pagination > .active > a { background: #0a5bbf !important; border-color: #0a5bbf !important; }
 .pages { margin-bottom: 0 !important; }
+
+/* Move dots closer to the bottom border of the slider images */
+/* .owl-controls { */
+/*     position: relative; */
+/*     z-index: 5; */
+/* } */
+
+/* Ensure the controls container spans full width */
+.owl-controls {
+    width: 100%;
+    text-align: center;
+}
+
+/* Make pagination container block and centered */
+.owl-pagination {
+    display: block;
+    width: 100%;
+    text-align: center !important;
+    margin-bottom: -18px;   /* adjust value: -20px to -40px */
+}
+
+/* Ensure individual dots are inline-block */
+.owl-page {
+    display: inline-block;
+    margin: 0 2px;
+}
 
 /* 5-column product grid */
 .col-product {
