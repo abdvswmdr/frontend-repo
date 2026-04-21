@@ -49,7 +49,6 @@
     var logged_in = req.cookies.logged_in;
     if (!logged_in) {
       throw new Error("User not logged in.");
-      return
     }
 
     var custId = req.session.customerId;
