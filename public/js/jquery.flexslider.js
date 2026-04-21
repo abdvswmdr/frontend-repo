@@ -817,7 +817,7 @@
               } else {
                 switch (special) {
                   case "setTotal": return (reverse) ? ((slider.count - 1) - slider.currentSlide + slider.cloneOffset) * pos : (slider.currentSlide + slider.cloneOffset) * pos;
-                  case "setTouch": return (reverse) ? pos : pos;
+                  case "setTouch": return pos;
                   case "jumpEnd": return (reverse) ? pos : slider.count * pos;
                   case "jumpStart": return (reverse) ? slider.count * pos : pos;
                   default: return pos;
