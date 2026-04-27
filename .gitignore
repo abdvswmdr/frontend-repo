@@ -3,7 +3,7 @@
 
 # Ignore coverage reports
 /coverage
-
+/nodebestpractices/*
 README.html
 .markdown-preview.html
 
