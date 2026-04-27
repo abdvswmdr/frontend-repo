@@ -86,7 +86,7 @@
   /* TODO: Add documentation */
   helpers.getCustomerId = function(req, env) {
     // Check if logged in. Get customer Id
-    var logged_in = req.cookies.logged_in;
+    const logged_in = req.cookies.logged_in;
 
     // TODO REMOVE THIS, SECURITY RISK
     if (env == "development" && req.query.custId != null) {
