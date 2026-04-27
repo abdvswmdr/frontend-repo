@@ -1,10 +1,19 @@
 'use strict';
 
-const express = require('express');
-const request = require('request');
+const express    = require('express');
+const request    = require('request');
+const rateLimit  = require('express-rate-limit');
 
-const app = express();
+const app      = express();
 const AUTH_URL = process.env.AUTH_URL || 'http://auth:8082';
+
+const authLimiter = rateLimit({
+    windowMs:       15 * 60 * 1000,
+    max:            20,
+    message:        { error: 'Too many attempts, please try again later.' },
+    standardHeaders: true,
+    legacyHeaders:  false
+});
 
 // GET /login — Basic Auth forwarded to soqoniauth, sets session on success
 app.get('/login', function(req, res, next) {
