@@ -1,14 +1,14 @@
 (function (){
   'use strict';
 
-  var express   = require("express")
-    , request   = require("request")
-    , endpoints = require("../endpoints")
-    , helpers   = require("../../helpers")
-    , app       = express()
+  const express   = require("express")
+  const request   = require("request")
+  const endpoints = require("../endpoints")
+  const helpers   = require("../../helpers")
+  const app       = express()
 
   app.get("/catalogue/images*", function (req, res, next) {
-    var url = endpoints.catalogueUrl + req.url.toString();
+    const url = endpoints.catalogueUrl + req.url.toString();
     request.get(url)
         .on('error', function(e) { next(e); })
         .pipe(res);
