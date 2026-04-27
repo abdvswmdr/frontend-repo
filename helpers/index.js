@@ -89,7 +89,7 @@
     const logged_in = req.cookies.logged_in;
 
     // TODO REMOVE THIS, SECURITY RISK
-    if (env == "development" && req.query.custId != null) {
+    if (env === "development" && req.query.custId != null) {
       return req.query.custId;
     }
 
