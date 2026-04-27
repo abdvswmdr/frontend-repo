@@ -1,4 +1,5 @@
 const express      = require("express")
+const helmet       = require("helmet")
 const morgan       = require("morgan")
 const bodyParser   = require("body-parser")
 const cookieParser = require("cookie-parser")
@@ -12,7 +13,7 @@ const user         = require("./api/user")
 const metrics      = require("./api/metrics")
 const app          = express()
 
-
+app.use(helmet());
 app.use(helpers.rewriteSlash);
 app.use(metrics);
 app.use(express.static("public"));
@@ -25,7 +26,7 @@ else {
     app.use(session(config.session));
 }
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '10kb' }));
 app.use(cookieParser());
 app.use(helpers.sessionMiddleware);
 app.use(morgan("dev", {}));
