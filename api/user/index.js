@@ -32,7 +32,7 @@ app.get('/login', authLimiter, function(req, res, next) {
 });
 
 // POST /register — forwarded to soqoniauth
-app.post('/register', function(req, res, next) {
+app.post('/register', authLimiter, function(req, res, next) {
     const options = {
         url: AUTH_URL + '/register',
         json: true,
