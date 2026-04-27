@@ -1,14 +1,14 @@
 'use strict';
 
-var express = require('express');
-var request = require('request');
+const express = require('express');
+const request = require('request');
 
-var app = express();
-var AUTH_URL = process.env.AUTH_URL || 'http://auth:8082';
+const app = express();
+const AUTH_URL = process.env.AUTH_URL || 'http://auth:8082';
 
 // GET /login — Basic Auth forwarded to soqoniauth, sets session on success
 app.get('/login', function(req, res, next) {
-    var options = {
+    const options = {
         url: AUTH_URL + '/login',
         headers: { 'Authorization': req.headers['authorization'] },
         json: true
@@ -24,7 +24,7 @@ app.get('/login', function(req, res, next) {
 
 // POST /register — forwarded to soqoniauth
 app.post('/register', function(req, res, next) {
-    var options = {
+    const options = {
         url: AUTH_URL + '/register',
         json: true,
         body: req.body
@@ -47,7 +47,7 @@ app.post('/logout', function(req, res) {
 
 // PUT /me — update personal details
 app.put('/me', function(req, res, next) {
-    var userId = req.session && req.session.customerId;
+    const userId = req.session && req.session.customerId;
     if (!userId) return res.status(401).json({ error: 'not logged in' });
 
     request.put({ url: AUTH_URL + '/customers/' + userId, json: true, body: req.body }, function(err, authRes, body) {
@@ -58,7 +58,7 @@ app.put('/me', function(req, res, next) {
 
 // PUT /me/password — change password
 app.put('/me/password', function(req, res, next) {
-    var userId = req.session && req.session.customerId;
+    const userId = req.session && req.session.customerId;
     if (!userId) return res.status(401).json({ error: 'not logged in' });
 
     request.put({ url: AUTH_URL + '/customers/' + userId + '/password', json: true, body: req.body }, function(err, authRes, body) {
@@ -69,7 +69,7 @@ app.put('/me/password', function(req, res, next) {
 
 // GET /me — check session, fetch user details from soqoniauth
 app.get('/me', function(req, res, next) {
-    var userId = req.session && req.session.customerId;
+    const userId = req.session && req.session.customerId;
     if (!userId) return res.status(401).json({ loggedIn: false });
 
     request.get({ url: AUTH_URL + '/customers/' + userId, json: true }, function(err, authRes, body) {
