@@ -1,17 +1,17 @@
 (function (){
   'use strict';
 
-  var async     = require("async")
-    , express   = require("express")
-    , request   = require("request")
-    , helpers   = require("../../helpers")
-    , endpoints = require("../endpoints")
-    , app       = express()
+  const async     = require("async")
+  const express   = require("express")
+  const request   = require("request")
+  const helpers   = require("../../helpers")
+  const endpoints = require("../endpoints")
+  const app       = express()
 
   // List items in cart for current logged in user.
   app.get("/cart", function (req, res, next) {
     console.log("Request received: " + req.url + ", " + req.query.custId);
-    var custId = helpers.getCustomerId(req, app.get("env"));
+    const custId = helpers.getCustomerId(req, app.get("env"));
     console.log("Customer ID: " + custId);
     request(endpoints.cartsUrl + "/" + custId + "/items", function (error, response, body) {
       if (error) {
@@ -23,9 +23,9 @@
 
   // Delete cart
   app.delete("/cart", function (req, res, next) {
-    var custId = helpers.getCustomerId(req, app.get("env"));
+    const custId = helpers.getCustomerId(req, app.get("env"));
     console.log('Attempting to delete cart for user: ' + custId);
-    var options = {
+    const options = {
       uri: endpoints.cartsUrl + "/" + custId,
       method: 'DELETE'
     };
@@ -46,9 +46,9 @@
 
     console.log("Delete item from cart: " + req.url);
 
-    var custId = helpers.getCustomerId(req, app.get("env"));
+    const custId = helpers.getCustomerId(req, app.get("env"));
 
-    var options = {
+    const options = {
       uri: endpoints.cartsUrl + "/" + custId + "/items/" + req.params.id.toString(),
       method: 'DELETE'
     };
@@ -70,7 +70,7 @@
       return;
     }
 
-    var custId = helpers.getCustomerId(req, app.get("env"));
+    const custId = helpers.getCustomerId(req, app.get("env"));
 
     async.waterfall([
         function (callback) {
@@ -83,7 +83,7 @@
           if (item.count !== undefined && item.count === 0) {
             return callback(new Error("out_of_stock"));
           }
-          var options = {
+          const options = {
             uri: endpoints.cartsUrl + "/" + custId + "/items",
             method: 'POST',
             json: true,
@@ -102,7 +102,6 @@
           if (cartStatus !== 201) {
             return callback(null, cartStatus);
           }
-          // Decrement stock after successful add-to-cart
           request({ uri: endpoints.catalogueUrl + "/catalogue/" + itemId + "/stock", method: 'PUT' },
             function (error) {
               if (error) { console.warn("stock decrement failed:", error.message); }
@@ -117,17 +116,17 @@
         }
         return next(err);
       }
-      if (statusCode != 201) {
+      if (statusCode !== 201) {
         return next(new Error("Unable to add to cart. Status code: " + statusCode));
       }
       helpers.respondStatus(res, statusCode);
     });
   });
 
-// Update cart item
+  // Update cart item
   app.post("/cart/update", function (req, res, next) {
     console.log("Attempting to update cart item: " + JSON.stringify(req.body));
-    
+
     if (req.body.id == null) {
       next(new Error("Must pass id of item to update"), 400);
       return;
@@ -136,7 +135,7 @@
       next(new Error("Must pass quantity to update"), 400);
       return;
     }
-    var custId = helpers.getCustomerId(req, app.get("env"));
+    const custId = helpers.getCustomerId(req, app.get("env"));
 
     async.waterfall([
         function (callback) {
@@ -146,7 +145,7 @@
           });
         },
         function (item, callback) {
-          var options = {
+          const options = {
             uri: endpoints.cartsUrl + "/" + custId + "/items",
             method: 'PATCH',
             json: true,
@@ -155,8 +154,8 @@
           console.log("PATCH to carts: " + options.uri + " body: " + JSON.stringify(options.body));
           request(options, function (error, response, body) {
             if (error) {
-              callback(error)
-                return;
+              callback(error);
+              return;
             }
             callback(null, response.statusCode);
           });
@@ -165,12 +164,12 @@
       if (err) {
         return next(err);
       }
-      if (statusCode != 202) {
-        return next(new Error("Unable to add to cart. Status code: " + statusCode))
+      if (statusCode !== 202) {
+        return next(new Error("Unable to update cart. Status code: " + statusCode));
       }
       helpers.respondStatus(res, statusCode);
     });
   });
-  
+
   module.exports = app;
 }());
