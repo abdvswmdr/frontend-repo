@@ -13,7 +13,23 @@ const user         = require("./api/user")
 const metrics      = require("./api/metrics")
 const app          = express()
 
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc:              ["'self'"],
+      scriptSrc:               ["'self'", "'unsafe-inline'"],
+      styleSrc:                ["'self'", "'unsafe-inline'", "https:"],
+      imgSrc:                  ["'self'", "data:"],
+      connectSrc:              ["'self'"],
+      fontSrc:                 ["'self'", "https:", "data:"],
+      objectSrc:               ["'none'"],
+      baseUri:                 ["'self'"],
+      formAction:              ["'self'"],
+      frameAncestors:          ["'self'"],
+      upgradeInsecureRequests: null
+    }
+  }
+}));
 app.use(helpers.rewriteSlash);
 app.use(metrics);
 app.use(express.static("public"));
