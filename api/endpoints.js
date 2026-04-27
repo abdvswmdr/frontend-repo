@@ -1,8 +1,6 @@
 (function (){
   'use strict';
 
-  const util = require('util');
-
   let domain = "";
   process.argv.forEach(function (val, index, array) {
     const arg = val.split("=");
@@ -15,14 +13,14 @@
   });
 
   module.exports = {
-    catalogueUrl:  util.format("http://catalogue%s", domain),
-    tagsUrl:       util.format("http://catalogue%s/tags", domain),
-    cartsUrl:      util.format("http://carts%s/carts", domain),
-    ordersUrl:     util.format("http://orders%s", domain),
-    customersUrl:  util.format("http://user%s/customers", domain),
-    addressUrl:    util.format("http://user%s/addresses", domain),
-    cardsUrl:      util.format("http://user%s/cards", domain),
-    loginUrl:      util.format("http://user%s/login", domain),
-    registerUrl:   util.format("http://user%s/register", domain),
+    catalogueUrl:  `http://catalogue${domain}`,
+    tagsUrl:       `http://catalogue${domain}/tags`,
+    cartsUrl:      `http://carts${domain}/carts`,
+    ordersUrl:     `http://orders${domain}`,
+    customersUrl:  `http://user${domain}/customers`,
+    addressUrl:    `http://user${domain}/addresses`,
+    cardsUrl:      `http://user${domain}/cards`,
+    loginUrl:      `http://user${domain}/login`,
+    registerUrl:   `http://user${domain}/register`,
   };
 }());
