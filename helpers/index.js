@@ -13,13 +13,12 @@
    * */
 
   helpers.errorHandler = function(err, req, res, next) {
+    const isDev = process.env.NODE_ENV !== 'production';
     const ret = {
       message: err.message,
-      error:   err
+      ...(isDev && { error: err })
     };
-    res.
-      status(err.status || 500).
-      send(ret);
+    res.status(err.status || 500).send(ret);
   };
 
   helpers.sessionMiddleware = function(req, res, next) {
