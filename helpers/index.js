@@ -1,8 +1,8 @@
 (function (){
   'use strict';
 
-  var request = require("request");
-  var helpers = {};
+  const request = require("request");
+  const helpers = {};
 
   /* Public: errorHandler is a middleware that handles your errors
    *
