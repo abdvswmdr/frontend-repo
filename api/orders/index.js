@@ -1,21 +1,21 @@
 (function (){
   'use strict';
 
-  var async     = require("async")
-    , express   = require("express")
-    , request   = require("request")
-    , endpoints = require("../endpoints")
-    , helpers   = require("../../helpers")
-    , app       = express()
+  const async     = require("async")
+  const express   = require("express")
+  const request   = require("request")
+  const endpoints = require("../endpoints")
+  const helpers   = require("../../helpers")
+  const app       = express()
 
   app.get("/orders", function (req, res, next) {
     console.log("Request received with body: " + JSON.stringify(req.body));
-    var logged_in = req.cookies.logged_in;
+    const logged_in = req.cookies.logged_in;
     if (!logged_in) {
       return next(new Error("User not logged in."));
     }
 
-    var custId = req.session.customerId;
+    const custId = req.session.customerId;
     async.waterfall([
         function (callback) {
           request(endpoints.ordersUrl + "/orders/search/customerId?sort=date&custId=" + custId, function (error, response, body) {
@@ -23,7 +23,7 @@
               return callback(error);
             }
             console.log("Received response: " + JSON.stringify(body));
-            if (response.statusCode == 404) {
+            if (response.statusCode === 404) {
               console.log("No orders found for user: " + custId);
               return callback(null, []);
             }
@@ -40,18 +40,18 @@
   });
 
   app.get("/orders/*", function (req, res, next) {
-    var url = endpoints.ordersUrl + req.url.toString();
+    const url = endpoints.ordersUrl + req.url.toString();
     request.get(url).pipe(res);
   });
 
   app.post("/orders", function(req, res, next) {
     console.log("Request received with body: " + JSON.stringify(req.body));
-    var logged_in = req.cookies.logged_in;
+    const logged_in = req.cookies.logged_in;
     if (!logged_in) {
       return next(new Error("User not logged in."));
     }
 
-    var custId = req.session.customerId;
+    const custId = req.session.customerId;
 
     async.waterfall([
         function (callback) {
@@ -61,11 +61,11 @@
               return;
             }
             console.log("Received response: " + JSON.stringify(body));
-            var jsonBody = JSON.parse(body);
-            var customerlink = jsonBody._links.customer.href;
-            var addressLink = jsonBody._links.addresses.href;
-            var cardLink = jsonBody._links.cards.href;
-            var order = {
+            const jsonBody = JSON.parse(body);
+            const customerlink = jsonBody._links.customer.href;
+            const addressLink = jsonBody._links.addresses.href;
+            const cardLink = jsonBody._links.cards.href;
+            const order = {
               "customer": customerlink,
               "address": null,
               "card": null,
@@ -84,7 +84,7 @@
                     return;
                   }
                   console.log("Received response: " + JSON.stringify(body));
-                  var jsonBody = JSON.parse(body);
+                  const jsonBody = JSON.parse(body);
                   if (jsonBody.status_code !== 500 && jsonBody._embedded.address[0] != null) {
                     order.address = jsonBody._embedded.address[0]._links.self.href;
                   }
@@ -99,7 +99,7 @@
                     return;
                   }
                   console.log("Received response: " + JSON.stringify(body));
-                  var jsonBody = JSON.parse(body);
+                  const jsonBody = JSON.parse(body);
                   if (jsonBody.status_code !== 500 && jsonBody._embedded.card[0] != null) {
                     order.card = jsonBody._embedded.card[0]._links.self.href;
                   }
@@ -116,7 +116,7 @@
           });
         },
         function (order, callback) {
-          var options = {
+          const options = {
             uri: endpoints.ordersUrl + '/orders',
             method: 'POST',
             json: true,
