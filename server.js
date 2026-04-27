@@ -1,19 +1,19 @@
-var request      = require("request")
-  , express      = require("express")
-  , morgan       = require("morgan")
-  , path         = require("path")
-  , bodyParser   = require("body-parser")
-  , async        = require("async")
-  , cookieParser = require("cookie-parser")
-  , session      = require("express-session")
-  , config       = require("./config")
-  , helpers      = require("./helpers")
-  , cart         = require("./api/cart")
-  , catalogue    = require("./api/catalogue")
-  , orders       = require("./api/orders")
-  , user         = require("./api/user")
-  , metrics      = require("./api/metrics")
-  , app          = express()
+const request      = require("request")
+const express      = require("express")
+const morgan       = require("morgan")
+const path         = require("path")
+const bodyParser   = require("body-parser")
+const async        = require("async")
+const cookieParser = require("cookie-parser")
+const session      = require("express-session")
+const config       = require("./config")
+const helpers      = require("./helpers")
+const cart         = require("./api/cart")
+const catalogue    = require("./api/catalogue")
+const orders       = require("./api/orders")
+const user         = require("./api/user")
+const metrics      = require("./api/metrics")
+const app          = express()
 
 
 app.use(helpers.rewriteSlash);
@@ -33,11 +33,11 @@ app.use(cookieParser());
 app.use(helpers.sessionMiddleware);
 app.use(morgan("dev", {}));
 
-var domain = "";
+let domain = "";
 process.argv.forEach(function (val, index, array) {
-  var arg = val.split("=");
+  const arg = val.split("=");
   if (arg.length > 1) {
-    if (arg[0] == "--domain") {
+    if (arg[0] === "--domain") {
       domain = arg[1];
       console.log("Setting domain to:", domain);
     }
@@ -57,7 +57,7 @@ process.on('unhandledRejection', function(reason, promise) {
   process.exit(1);
 });
 
-var server = app.listen(process.env.PORT || 8079, function () {
-  var port = server.address().port;
+const server = app.listen(process.env.PORT || 8079, function () {
+  const port = server.address().port;
   console.log("App now running in %s mode on port %d", app.get("env"), port);
 });
