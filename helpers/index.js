@@ -79,7 +79,7 @@
   helpers.simpleHttpRequest = function(url, res, next) {
     request.get(url, function(error, response, body) {
       if (error) return next(error);
-      helpers.respondStatusBody(res, response.statusCode, body);
+      helpers.respondStatusBody(res, response.statusCode || 200, body);
     }.bind({res: res}));
   }
 
