@@ -9,6 +9,6 @@
     "prefer-const": "error",
     "eqeqeq": ["error", "always", { "null": "ignore" }],
     "no-console": "off",
-    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_|next|index|array|promise" }]
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_|next|index|array|promise|body" }]
   }
 }
