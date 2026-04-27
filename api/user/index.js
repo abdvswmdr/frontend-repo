@@ -16,7 +16,7 @@ const authLimiter = rateLimit({
 });
 
 // GET /login — Basic Auth forwarded to soqoniauth, sets session on success
-app.get('/login', function(req, res, next) {
+app.get('/login', authLimiter, function(req, res, next) {
     const options = {
         url: AUTH_URL + '/login',
         headers: { 'Authorization': req.headers['authorization'] },
