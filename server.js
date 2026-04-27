@@ -58,3 +58,9 @@ const server = app.listen(process.env.PORT || 8079, function () {
   const port = server.address().port;
   console.log("App now running in %s mode on port %d", app.get("env"), port);
 });
+
+process.on('SIGTERM', function() {
+  server.close(function() {
+    process.exit(0);
+  });
+});
