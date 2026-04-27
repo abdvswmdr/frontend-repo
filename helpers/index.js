@@ -76,12 +76,33 @@
    *   });
    * });
    */
-  helpers.simpleHttpRequest = function(url, res, next) {
-    request.get(url, function(error, response, body) {
-      if (error) return next(error);
-      helpers.respondStatusBody(res, response.statusCode || 200, body);
-    }.bind({res: res}));
-  }
+  helpers.httpGet = function(url) {
+    return new Promise(function(resolve, reject) {
+      request.get(url, function(error, response, body) {
+        if (error) return reject(error);
+        resolve({ status: response.statusCode || 200, body: body || '' });
+      });
+    });
+  };
+
+  helpers.httpRequest = function(options) {
+    return new Promise(function(resolve, reject) {
+      request(options, function(error, response, body) {
+        if (error) return reject(error);
+        const bodyStr = (body !== null && typeof body === 'object') ? JSON.stringify(body) : (body || '');
+        resolve({ status: response.statusCode, body: bodyStr });
+      });
+    });
+  };
+
+  helpers.simpleHttpRequest = async function(url, res, next) {
+    try {
+      const { status, body } = await helpers.httpGet(url);
+      helpers.respondStatusBody(res, status, body);
+    } catch(err) {
+      next(err);
+    }
+  };
 
   /* TODO: Add documentation */
   helpers.getCustomerId = function(req, env) {
