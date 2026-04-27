@@ -1,0 +1,12 @@
+node_modules
+.git
+coverage
+distribution
+npm-debug.log
+.eslintrc.json
+test/
+docs/
+nodebestpractices/
+shippable.yml
+Jenkinsfile
+docker-compose.yml
