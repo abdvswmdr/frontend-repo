@@ -6,7 +6,8 @@
   "parserOptions": {
     "ecmaVersion": 2020
   },
-  "extends": "eslint:recommended",
+  "plugins": ["security"],
+  "extends": ["eslint:recommended", "plugin:security/recommended-legacy"],
   "rules": {
     "no-var": "error",
     "prefer-const": "error",
