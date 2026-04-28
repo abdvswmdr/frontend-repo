@@ -43,7 +43,7 @@ h5 {
   align-items: center;
 }
 #top ul.menu > li + li:before {
-  color: #4a5a7a !important;
+  content: none !important;
 }
 
 /* ── Navbar — slim < 60px total height ──────────────── */
