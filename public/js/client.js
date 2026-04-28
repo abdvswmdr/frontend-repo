@@ -55,7 +55,8 @@ function register() {
             }, 1500);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            $("#registration-message").html('<div class="alert alert-danger">There was a problem with your registration: ' + errorThrown + '</div>');
+            var msg = (jqXHR.responseJSON && jqXHR.responseJSON.error) || errorThrown || 'Unknown error';
+            $("#registration-message").html('<div class="alert alert-danger">There was a problem with your registration: ' + msg + '</div>');
             console.log('error: ' + JSON.stringify(jqXHR));
             console.log('error: ' + textStatus);
             console.log('error: ' + errorThrown);
