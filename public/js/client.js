@@ -27,40 +27,40 @@ function login() {
 }
 
 function register() {
-    var username = $('#register-username-modal').val();
-    var email = $('#register-email-modal').val();
-    var password = $('#register-password-modal').val();
-    var firstName = $('#register-first-modal').val();
-    var lastName = $('#register-last-modal').val();
-    var postvals = JSON.stringify({
-		"username": username,
-		"password": password,
-		"email": email,
-		"firstName": firstName,
-		"lastName": lastName
-	});
-	console.log(postvals);
+    var username  = $('#register-username-modal').val().trim();
+    var email     = $('#register-email-modal').val().trim();
+    var password  = $('#register-password-modal').val();
+    var firstName = $('#register-first-modal').val().trim();
+    var lastName  = $('#register-last-modal').val().trim();
+
+    // Client-side validation
+    if (!/^[a-zA-Z0-9_-]{3,50}$/.test(username)) {
+        $("#registration-message").html('<div class="alert alert-danger">Username must be 3–50 characters (letters, numbers, _ or -).</div>');
+        return false;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        $("#registration-message").html('<div class="alert alert-danger">Please enter a valid email address.</div>');
+        return false;
+    }
+    if (password.length < 8) {
+        $("#registration-message").html('<div class="alert alert-danger">Password must be at least 8 characters.</div>');
+        return false;
+    }
+
     $.ajax({
         url: "register",
         type: "POST",
         contentType: 'application/json; charset=utf-8',
         async: false,
-	data: postvals,
+        data: JSON.stringify({ username: username, password: password, email: email, firstName: firstName, lastName: lastName }),
         success: function (data, textStatus, jqXHR) {
-            $("#registration-message").html('<div class="alert alert-success">Registration and login successful.</div>');
-            console.log('posted: ' + textStatus);
-            console.log("logged_in cookie: " + $.cookie('logged_in'));
-            setTimeout(function(){
-                location.reload();
-            }, 1500);
+            $("#registration-message").html('<div class="alert alert-success">Registration successful! Logging you in...</div>');
+            setTimeout(function() { location.reload(); }, 1200);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             var msg = (jqXHR.responseJSON && jqXHR.responseJSON.error) || errorThrown || 'Unknown error';
-            $("#registration-message").html('<div class="alert alert-danger">There was a problem with your registration: ' + msg + '</div>');
-            console.log('error: ' + JSON.stringify(jqXHR));
-            console.log('error: ' + textStatus);
-            console.log('error: ' + errorThrown);
-        },
+            $("#registration-message").html('<div class="alert alert-danger">Registration failed: ' + msg + '</div>');
+        }
     });
     return false;
 }
