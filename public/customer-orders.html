@@ -147,44 +147,8 @@ _________________________________________________________ -->
 <script src="js/front.js"></script>
 <script src="js/jquery.query-object.js"></script>
 <script src="js/client.js"></script>
-<script>
-
-    $(document).ready(function () {
-        $.ajaxSetup({
-            contentType: "application/json; charset=utf-8"
-        });
-
-        console.log("Loading components for basket.html");
-        $("#topbar").load("topbar.html");
-        $("#navbar").load("navbar.html");
-        $("#footer").load("footer.html");
-    })
-</script>
-
-<script>
-    $(document).ready(function () {
-        $.getJSON('/orders', {}, function (data) {
-                    $.each(data, function (index, element) {
-                        var selfRef = element._links.self.href;
-                        var split = selfRef.split("/");
-                        var id = split[split.length - 1];
-                        $('#tableOrders').append('\
-                    <tr>\
-                        <th># ' + id + '</th>\
-                        <td>' + element.date.split(".")[0].replace("T", " ") + '</td>\
-                        <td>$ ' + (element.total).toFixed(2) + '</td>\
-                        <td>\
-                            <span class="label label-success">Shipped</span>\
-                        </td>\
-                        <td>\
-                            <a href="customer-order.html?order=' + selfRef.replace(/http:\/\/(.*)\/orders/, "/orders") + '" class="btn btn-primary btn-sm">View</a>\
-                        </td>\
-                    </tr>');
-                    });
-                }
-        )
-    });
-</script>
+<script src="js/customer-orders-page-components.js"></script>
+<script src="js/customer-orders-page.js"></script>
 
 </body>
 
