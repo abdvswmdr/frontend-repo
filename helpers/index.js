@@ -1,5 +1,5 @@
-(function (){
-  'use strict';
+(function () {
+  "use strict";
 
   const request = require("request");
   const helpers = {};
@@ -12,26 +12,26 @@
    * app.use(helpers.errorHandler);
    * */
 
-  helpers.errorHandler = function(err, req, res, next) {
-    const isDev = process.env.NODE_ENV !== 'production';
+  helpers.errorHandler = function (err, req, res, next) {
+    const isDev = process.env.NODE_ENV !== "production";
     const ret = {
       message: err.message,
-      ...(isDev && { error: err })
+      ...(isDev && { error: err }),
     };
     res.status(err.status || 500).send(ret);
   };
 
-  helpers.sessionMiddleware = function(req, res, next) {
-    if(!req.cookies.logged_in) {
+  helpers.sessionMiddleware = function (req, res, next) {
+    if (!req.cookies.logged_in) {
       req.session.customerId = null;
     }
     next();
   };
 
   /* Responds with the given body and status 200 OK  */
-  helpers.respondSuccessBody = function(res, body) {
+  helpers.respondSuccessBody = function (res, body) {
     helpers.respondStatusBody(res, 200, body);
-  }
+  };
 
   /* Public: responds with the given body and status
    *
@@ -39,25 +39,24 @@
    * statusCode - the HTTP status code to set to the response
    * body       - (string) the body to yield to the response
    */
-  helpers.respondStatusBody = function(res, statusCode, body) {
+  helpers.respondStatusBody = function (res, statusCode, body) {
     res.writeHeader(statusCode);
     res.write(body);
     res.end();
-  }
+  };
 
   /* Responds with the given statusCode */
-  helpers.respondStatus = function(res, statusCode) {
+  helpers.respondStatus = function (res, statusCode) {
     res.writeHeader(statusCode);
     res.end();
-  }
+  };
 
   /* Rewrites and redirects any url that doesn't end with a slash. */
-  helpers.rewriteSlash = function(req, res, next) {
-   if(req.url.substr(-1) === '/' && req.url.length > 1)
-       res.redirect(301, req.url.slice(0, -1));
-   else
-       next();
-  }
+  helpers.rewriteSlash = function (req, res, next) {
+    if (req.url.substr(-1) === "/" && req.url.length > 1)
+      res.redirect(301, req.url.slice(0, -1));
+    else next();
+  };
 
   /* Public: performs an HTTP GET request to the given URL
    *
@@ -75,36 +74,39 @@
    *   });
    * });
    */
-  helpers.httpGet = function(url) {
-    return new Promise(function(resolve, reject) {
-      request.get(url, function(error, response, body) {
+  helpers.httpGet = function (url) {
+    return new Promise(function (resolve, reject) {
+      request.get(url, function (error, response, body) {
         if (error) return reject(error);
-        resolve({ status: response.statusCode || 200, body: body || '' });
+        resolve({ status: response.statusCode || 200, body: body || "" });
       });
     });
   };
 
-  helpers.httpRequest = function(options) {
-    return new Promise(function(resolve, reject) {
-      request(options, function(error, response, body) {
+  helpers.httpRequest = function (options) {
+    return new Promise(function (resolve, reject) {
+      request(options, function (error, response, body) {
         if (error) return reject(error);
-        const bodyStr = (body !== null && typeof body === 'object') ? JSON.stringify(body) : (body || '');
+        const bodyStr =
+          body !== null && typeof body === "object"
+            ? JSON.stringify(body)
+            : body || "";
         resolve({ status: response.statusCode, body: bodyStr });
       });
     });
   };
 
-  helpers.simpleHttpRequest = async function(url, res, next) {
+  helpers.simpleHttpRequest = async function (url, res, next) {
     try {
       const { status, body } = await helpers.httpGet(url);
       helpers.respondStatusBody(res, status, body);
-    } catch(err) {
+    } catch (err) {
       next(err);
     }
   };
 
   /* TODO: Add documentation */
-  helpers.getCustomerId = function(req, env) {
+  helpers.getCustomerId = function (req, env) {
     // Check if logged in. Get customer Id
     const logged_in = req.cookies.logged_in;
 
@@ -122,6 +124,6 @@
     }
 
     return req.session.customerId;
-  }
+  };
   module.exports = helpers;
-}());
+})();
