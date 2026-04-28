@@ -17,10 +17,10 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc:              ["'self'"],
-      scriptSrc:               ["'self'"],
+      scriptSrc:               ["'self'", "https://js.honeybadger.io"],
       styleSrc:                ["'self'", "'unsafe-inline'", "https:"],
       imgSrc:                  ["'self'", "data:"],
-      connectSrc:              ["'self'"],
+      connectSrc:              ["'self'", "https://api.honeybadger.io"],
       fontSrc:                 ["'self'", "https:", "data:"],
       objectSrc:               ["'none'"],
       baseUri:                 ["'self'"],
