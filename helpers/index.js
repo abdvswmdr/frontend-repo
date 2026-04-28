@@ -102,7 +102,8 @@
 
   helpers.simpleHttpRequest = async function (url, res, next) {
     try {
-      const { status, body } = await helpers.httpGet(url);
+      const { status, body, contentType } = await helpers.httpGet(url);
+      if (contentType) res.setHeader("Content-Type", contentType);
       helpers.respondStatusBody(res, status, body);
     } catch (err) {
       next(err);
