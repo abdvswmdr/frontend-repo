@@ -13,23 +13,26 @@ const user         = require("./api/user")
 const metrics      = require("./api/metrics")
 const app          = express()
 
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc:              ["'self'"],
-      scriptSrc:               ["'self'", "https://js.honeybadger.io"],
-      styleSrc:                ["'self'", "'unsafe-inline'", "https:"],
-      imgSrc:                  ["'self'", "data:"],
-      connectSrc:              ["'self'", "https://api.honeybadger.io"],
-      fontSrc:                 ["'self'", "https:", "data:"],
-      objectSrc:               ["'none'"],
-      baseUri:                 ["'self'"],
-      formAction:              ["'self'"],
-      frameAncestors:          ["'self'"],
-      upgradeInsecureRequests: null
-    }
-  }
-}));
+// TODO: re-enable CSP once cross-browser product loading is diagnosed
+// (inline event handlers in dynamic HTML cards may need migrating to delegated listeners first)
+// app.use(helmet({
+//   contentSecurityPolicy: {
+//     directives: {
+//       defaultSrc:              ["'self'"],
+//       scriptSrc:               ["'self'", "https://js.honeybadger.io"],
+//       styleSrc:                ["'self'", "'unsafe-inline'", "https:"],
+//       imgSrc:                  ["'self'", "data:"],
+//       connectSrc:              ["'self'", "https://api.honeybadger.io"],
+//       fontSrc:                 ["'self'", "https:", "data:"],
+//       objectSrc:               ["'none'"],
+//       baseUri:                 ["'self'"],
+//       formAction:              ["'self'"],
+//       frameAncestors:          ["'self'"],
+//       upgradeInsecureRequests: null
+//     }
+//   }
+// }));
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(helpers.rewriteSlash);
 app.use(metrics);
 app.use(express.static("public"));
