@@ -13,8 +13,8 @@ $(document).ready(function () {
     document.location.href = "/";
   }
   var CURRENCY_SYMBOLS = { USD: "$", KES: "KSh ", EUR: "€" };
-  var currency = localStorage.getItem("soqoniCurrency") || "USD";
-  var symbol = CURRENCY_SYMBOLS[currency] || "$";
+  var currency = localStorage.getItem("soqoniCurrency") || "KES";
+  var symbol = CURRENCY_SYMBOLS[currency] || "KSh ";
 
   var productCount = 1;
   window.changeQty = function (delta) {
