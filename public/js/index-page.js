@@ -48,20 +48,22 @@ $(document).ready(function () {
 
     // Init an owl carousel on a given #id string
     function initCarousel(id) {
-        $(id).owlCarousel({
-            navigation: true,
-            slideSpeed: 300,
-            paginationSpeed: 400,
-            items: 5,
-            itemsDesktop: [1199, 5],
-            itemsDesktopSmall: [979, 5],
-            itemsTablet: [768, 5],
-            itemsMobile: [479, 5],
-            pagination: false,
-            afterInit: function () {
-                $(id + ' .item').css('visibility', 'visible');
-            }
-        });
+        $(id + ' .item').css('visibility', 'visible');
+        try {
+            $(id).owlCarousel({
+                navigation: true,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                items: 5,
+                itemsDesktop: [1199, 5],
+                itemsDesktopSmall: [979, 5],
+                itemsTablet: [768, 5],
+                itemsMobile: [479, 5],
+                pagination: false
+            });
+        } catch (e) {
+            $(id).css('display', 'flex').css('flex-wrap', 'wrap');
+        }
     }
 
     // Hot this week (with Best Seller badge)
