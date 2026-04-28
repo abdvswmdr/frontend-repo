@@ -29,21 +29,30 @@ $(document).ready(function () {
   $("#currency-select").val(stored);
 
   if ($.cookie("logged_in") != null && $.cookie("logged_in") != "") {
-    username($.cookie("logged_in"), function (username) {
-      if (typeof username !== "undefined") {
+    $.getJSON("/me", function(data) {
+      if (data && data.loggedIn && data.user) {
+        var displayName = data.user.firstName || data.user.username;
+        window.soqoniRole = data.user.role || 'user';
         $("#login").remove();
         $("#register").remove();
         $("#howdy")
-          .append('<a href="#">Logged in as ' + username + "<\/a>")
+          .append('<a href="customer-account.html">Hi, ' + displayName + '<\/a>')
           .hide()
           .fadeIn(200);
         $("#logout").hide().fadeIn(200);
+        if (data.user.role === 'admin') {
+          setTimeout(function() { $("#tabAdmin").show(); }, 200);
+        }
       } else {
         $("#howdy").remove();
         $("#logout").remove();
       }
+    }).fail(function() {
+      $("#howdy").remove();
+      $("#logout").remove();
     });
   } else {
+    window.soqoniRole = 'guest';
     $("#howdy").remove();
     $("#logout").remove();
   }
