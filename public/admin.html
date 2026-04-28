@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Soqoni — Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.blue.css" rel="stylesheet" id="theme-stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <script src="js/respond.min.js"></script>
+    <link rel="shortcut icon" href="favicon.png">
+</head>
+<body>
+
+<div id="topbar"></div>
+<div id="navbar"></div>
+
+<div id="all">
+  <div id="content">
+    <div class="container" style="padding-top:30px;">
+
+      <div class="col-md-12">
+        <ul class="breadcrumb">
+          <li><a href="index.html">Home</a></li>
+          <li>Admin Panel</li>
+        </ul>
+      </div>
+
+      <!-- Stats row -->
+      <div class="col-md-12" id="admin-stats" style="margin-bottom:20px;">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="panel panel-default text-center" style="padding:16px 0;">
+              <div style="font-size:28px;font-weight:700;" id="stat-total">—</div>
+              <div class="text-muted" style="font-size:12px;">Total Users</div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="panel panel-default text-center" style="padding:16px 0;">
+              <div style="font-size:28px;font-weight:700;color:#c0392b;" id="stat-admins">—</div>
+              <div class="text-muted" style="font-size:12px;">Admins</div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="panel panel-default text-center" style="padding:16px 0;">
+              <div style="font-size:28px;font-weight:700;color:#27ae60;" id="stat-users">—</div>
+              <div class="text-muted" style="font-size:12px;">Regular Users</div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="panel panel-default text-center" style="padding:16px 0;">
+              <div style="font-size:28px;font-weight:700;color:#2980b9;" id="stat-newest">—</div>
+              <div class="text-muted" style="font-size:12px;">Latest Signup</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User table -->
+      <div class="col-md-12">
+        <div class="box">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <h2 style="margin:0;">Users</h2>
+            <input type="text" id="user-search" class="form-control" placeholder="Search by username or email..." style="width:260px;">
+          </div>
+
+          <div id="admin-message"></div>
+
+          <div class="table-responsive">
+            <table class="table table-hover" id="users-table">
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Joined</th>
+                  <th style="width:180px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="users-tbody">
+                <tr><td colspan="5" class="text-center text-muted">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="footer"></div>
+
+<script src="https://js.honeybadger.io/v6/honeybadger.min.js"></script>
+<script src="js/honeybadger-init.js"></script>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/modernizr.js"></script>
+<script src="js/front.js"></script>
+<script src="js/client.js"></script>
+<script src="js/admin-page.js"></script>
+
+</body>
+</html>
