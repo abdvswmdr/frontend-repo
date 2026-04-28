@@ -78,7 +78,11 @@
     return new Promise(function (resolve, reject) {
       request.get(url, function (error, response, body) {
         if (error) return reject(error);
-        resolve({ status: response.statusCode || 200, body: body || "" });
+        resolve({
+          status: response.statusCode || 200,
+          body: body || "",
+          contentType: response.headers["content-type"],
+        });
       });
     });
   };
