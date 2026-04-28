@@ -6,8 +6,8 @@ $(document).ready(function () {
     $("#footer").load("footer.html");
 
     var CURRENCY_SYMBOLS = { USD: '$', KES: 'KSh ', EUR: '€' };
-    var currency = localStorage.getItem('soqoniCurrency') || 'USD';
-    var symbol   = CURRENCY_SYMBOLS[currency] || '$';
+    var currency = localStorage.getItem('soqoniCurrency') || 'KES';
+    var symbol   = CURRENCY_SYMBOLS[currency] || 'KSh ';
 
     // Main banner slider
     $('#main-slider').owlCarousel({

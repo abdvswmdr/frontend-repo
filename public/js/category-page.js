@@ -75,8 +75,8 @@ $(document).ready(function () {
   });
 
   var CURRENCY_SYMBOLS = { USD: "$", KES: "KSh ", EUR: "€" };
-  var currency = localStorage.getItem("soqoniCurrency") || "USD";
-  var symbol = CURRENCY_SYMBOLS[currency] || "$";
+  var currency = localStorage.getItem("soqoniCurrency") || "KES";
+  var symbol = CURRENCY_SYMBOLS[currency] || "KSh ";
   var wishlist = JSON.parse(localStorage.getItem("soqoniWishlist") || "[]");
 
   $.getJSON(
