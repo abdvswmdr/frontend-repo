@@ -72,7 +72,7 @@ app.post('/logout', function(req, res) {
     res.status(200).json({ ok: true });
 });
 
-// GET /me — profile + role
+// GET /me — profile + role; syncs session role from DB on every call
 app.get('/me', function(req, res, next) {
     const userId = req.session && req.session.customerId;
     if (!userId) return res.status(401).json({ loggedIn: false });
@@ -80,6 +80,7 @@ app.get('/me', function(req, res, next) {
     request.get({ url: AUTH_URL + '/customers/' + userId, json: true }, function(err, authRes, body) {
         if (err) return next(err);
         if (authRes.statusCode !== 200) return res.status(401).json({ loggedIn: false });
+        req.session.role = body.role || 'user';
         res.status(200).json({ loggedIn: true, user: body });
     });
 });

@@ -4,12 +4,14 @@
   const session    = require("express-session");
   const RedisStore = require('connect-redis')(session);
 
-  const sessionSecret = process.env.SESSION_SECRET || 'sooper secret';
-  const isProduction  = process.env.NODE_ENV === 'production';
+  const sessionSecret   = process.env.SESSION_SECRET || 'sooper secret';
+  // Use COOKIE_SECURE=true only when HTTPS is in place — don't tie to NODE_ENV
+  // because the site may run in production over plain HTTP (no cert-manager yet)
+  const secureCookie = process.env.COOKIE_SECURE === 'true';
 
   const cookieOptions = {
     httpOnly: true,
-    secure:   isProduction,
+    secure:   secureCookie,
     sameSite: 'lax',
     maxAge:   86400000
   };
