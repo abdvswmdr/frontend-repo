@@ -11,7 +11,8 @@ const catalogue    = require("./api/catalogue")
 const orders       = require("./api/orders")
 const user         = require("./api/user")
 const metrics      = require("./api/metrics")
-const app          = express()
+const app          = express();
+app.set('trust proxy', 1);
 
 // TODO: re-enable CSP once cross-browser product loading is diagnosed
 // (inline event handlers in dynamic HTML cards may need migrating to delegated listeners first)
