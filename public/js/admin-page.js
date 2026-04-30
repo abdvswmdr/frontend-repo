@@ -50,6 +50,12 @@ function loadUsers() {
         url: '/admin/users',
         type: 'GET',
         success: function (data) {
+            if (!Array.isArray(data)) {
+                console.error('Expected array of users, got:', data);
+                var msg = (data && data.error) || 'Invalid response from server';
+                $('#users-tbody').html('<tr><td colspan="5" class="text-center text-danger">' + esc(msg) + '</td></tr>');
+                return;
+            }
             allUsers = data || [];
             renderTable(allUsers);
             updateStats(allUsers);
