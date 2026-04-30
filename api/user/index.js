@@ -79,7 +79,14 @@ app.get('/me', function(req, res, next) {
 
     request.get({ url: AUTH_URL + '/customers/' + userId, json: true }, function(err, authRes, body) {
         if (err) return next(err);
-        if (authRes.statusCode !== 200) return res.status(401).json({ loggedIn: false });
+        if (authRes.statusCode !== 200) {
+            console.warn('Auth service profile fetch failed for user', userId, 'status:', authRes.statusCode);
+            return res.status(401).json({ loggedIn: false });
+        }
+        if (!body || typeof body !== 'object' || !body.id) {
+            console.error('Auth service returned invalid profile body:', body);
+            return res.status(500).json({ error: 'invalid profile data' });
+        }
         req.session.role = body.role || 'user';
         res.status(200).json({ loggedIn: true, user: body });
     });
