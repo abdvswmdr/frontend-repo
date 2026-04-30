@@ -22,9 +22,8 @@
   };
 
   helpers.sessionMiddleware = function (req, res, next) {
-    if (!req.cookies.logged_in) {
-      req.session.customerId = null;
-    }
+    // This middleware previously wiped req.session.customerId if the cookie was missing.
+    // We remove that destructive behavior to allow the session store to be the source of truth.
     next();
   };
 
@@ -112,23 +111,22 @@
 
   /* TODO: Add documentation */
   helpers.getCustomerId = function (req, env) {
-    // Check if logged in. Get customer Id
-    const logged_in = req.cookies.logged_in;
+    // Priority 1: Direct session value (authoritative for logged-in users)
+    if (req.session && req.session.customerId) {
+      return req.session.customerId;
+    }
 
-    // TODO REMOVE THIS, SECURITY RISK
+    // Priority 2: Development override
     if (env === "development" && req.query.custId != null) {
       return req.query.custId;
     }
 
-    if (!logged_in) {
-      if (!req.session.id) {
-        throw new Error("User not logged in.");
-      }
-      // Use Session ID instead
+    // Priority 3: Fallback to session ID for anonymous users (e.g. guest carts)
+    if (req.session && req.session.id) {
       return req.session.id;
     }
 
-    return req.session.customerId;
+    throw new Error("User not logged in and no session available.");
   };
   module.exports = helpers;
 })();

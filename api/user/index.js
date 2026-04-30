@@ -112,7 +112,12 @@ app.put('/me/password', function(req, res, next) {
 app.get('/admin/users', requireAdmin, function(req, res, next) {
     request.get({ url: AUTH_URL + '/admin/users', json: true, headers: adminAuthHeader(req) }, function(err, authRes, body) {
         if (err) return next(err);
-        res.status(authRes.statusCode).json(body);
+        if (authRes.statusCode !== 200) {
+            return res.status(authRes.statusCode).json({
+                error: (body && body.error) || 'Failed to fetch users from auth service'
+            });
+        }
+        res.status(200).json(body);
     });
 });
 
