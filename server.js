@@ -13,6 +13,10 @@ const user         = require("./api/user")
 const metrics      = require("./api/metrics")
 const app          = express();
 app.set('trust proxy', 1);
+app.use(function(req, res, next) {
+    console.log('INCOMING:', req.method, req.url);
+    next();
+});
 
 // TODO: re-enable CSP once cross-browser product loading is diagnosed
 // (inline event handlers in dynamic HTML cards may need migrating to delegated listeners first)
