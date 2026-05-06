@@ -93,15 +93,22 @@
 
 <div id="footer"></div>
 
-<script src="https://js.honeybadger.io/v6/honeybadger.min.js"></script>
-<script src="js/honeybadger-init.js"></script>
-<script src="js/jquery-1.11.0.min.js"></script>
+<script>document.getElementById('loading-status').textContent = 'S0: inline before scripts';</script>
+<script src="https://js.honeybadger.io/v6/honeybadger.min.js" onerror="document.getElementById('loading-status').textContent='S1-FAIL: honeybadger.min.js failed';"></script>
+<script>document.getElementById('loading-status').textContent = 'S1: honeybadger loaded';</script>
+<script src="js/honeybadger-init.js" onerror="document.getElementById('loading-status').textContent='S2-FAIL: honeybadger-init.js failed';"></script>
+<script>document.getElementById('loading-status').textContent = 'S2: honeybadger-init done';</script>
+<script src="js/jquery-1.11.0.min.js" onerror="document.getElementById('loading-status').textContent='S3-FAIL: jquery failed';"></script>
+<script>document.getElementById('loading-status').textContent = 'S3: jquery loaded';</script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/modernizr.js"></script>
-<script src="js/front.js"></script>
-<script src="js/client.js"></script>
-<script src="js/admin-page.js"></script>
+<script src="js/front.js" onerror="document.getElementById('loading-status').textContent='S7-FAIL: front.js failed';"></script>
+<script>document.getElementById('loading-status').textContent = 'S7: front.js done';</script>
+<script src="js/client.js" onerror="document.getElementById('loading-status').textContent='S8-FAIL: client.js failed';"></script>
+<script>document.getElementById('loading-status').textContent = 'S8: client.js done - about to load admin-page.js';</script>
+<script src="js/admin-page.js" onerror="document.getElementById('loading-status').textContent='S9-FAIL: admin-page.js failed';"></script>
+<script>document.getElementById('loading-status').textContent = 'S9: all scripts parsed - waiting for ready';</script>
 
 </body>
 </html>
