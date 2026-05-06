@@ -75,6 +75,7 @@ app.post('/logout', function(req, res) {
 
 // GET /me — profile + role; syncs session role from DB on every call
 app.get('/me', function(req, res, next) {
+    res.set('Cache-Control', 'no-store');
     const userId = req.session && req.session.customerId;
     if (!userId) return res.status(401).json({ loggedIn: false });
 
