@@ -5,7 +5,11 @@ $(document).ready(function () {
     $('#footer').load('footer.html');
 
     // Redirect non-admins immediately — /me check is the authoritative gate
+    $('#loading-status').text('/me sent...');
     $.getJSON('/me', function (data) {
+        var loggedIn = data && data.loggedIn;
+        var role = data && data.user && data.user.role;
+        $('#loading-status').text('/me: loggedIn=' + loggedIn + ' role=' + role);
         if (!data.loggedIn) {
             window.location.href = 'index.html';
             return;
@@ -14,6 +18,7 @@ $(document).ready(function () {
             window.location.href = 'index.html';
             return;
         }
+        $('#loading-status').text('role=admin, calling loadUsers...');
         loadUsers();
     }).fail(function () {
         window.location.href = 'index.html';
@@ -46,6 +51,7 @@ function esc(str) {
 }
 
 function loadUsers() {
+    $('#loading-status').text('/admin/users AJAX sent...');
     $.ajax({
         url: '/admin/users',
         type: 'GET',

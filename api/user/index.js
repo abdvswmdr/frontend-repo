@@ -16,13 +16,16 @@ const authLimiter = rateLimit({
 });
 
 function requireAdmin(req, res, next) {
-    console.log('REQUIRE_ADMIN: customerId=' + (req.session && req.session.customerId) + ' role=' + (req.session && req.session.role));
+    console.log('REQUIRE_ADMIN_START: path=' + req.path + ' customerId=' + (req.session && req.session.customerId) + ' role=' + (req.session && req.session.role));
     if (!req.session || !req.session.customerId) {
+        console.log('REQUIRE_ADMIN_FAIL: no session or customerId');
         return res.status(401).json({ error: 'not logged in' });
     }
     if (req.session.role !== 'admin') {
+        console.log('REQUIRE_ADMIN_FAIL: role is ' + req.session.role);
         return res.status(403).json({ error: 'forbidden: admin access required' });
     }
+    console.log('REQUIRE_ADMIN_SUCCESS: proceeding to next');
     next();
 }
 

@@ -14,6 +14,11 @@ const metrics      = require("./api/metrics")
 const app          = express();
 app.set('trust proxy', 1);
 
+app.use(function(req, res, next) {
+    console.log('TRACE:', req.method, req.url);
+    next();
+});
+
 // TODO: re-enable CSP once cross-browser product loading is diagnosed
 // (inline event handlers in dynamic HTML cards may need migrating to delegated listeners first)
 // app.use(helmet({
@@ -46,6 +51,12 @@ else {
     app.use(session(config.session));
 }
 
+app.use(function(req, res, next) {
+    if (req.path.startsWith('/me') || req.path.startsWith('/admin') || req.path.startsWith('/login')) {
+        console.log('INCOMING ' + req.method + ' ' + req.path);
+    }
+    next();
+});
 app.use(bodyParser.json({ limit: '10kb' }));
 app.use(cookieParser());
 app.use(helpers.sessionMiddleware);
