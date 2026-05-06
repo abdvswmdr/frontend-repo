@@ -16,6 +16,7 @@ const authLimiter = rateLimit({
 });
 
 function requireAdmin(req, res, next) {
+    console.log('REQUIRE_ADMIN: customerId=' + (req.session && req.session.customerId) + ' role=' + (req.session && req.session.role));
     if (!req.session || !req.session.customerId) {
         return res.status(401).json({ error: 'not logged in' });
     }
@@ -119,7 +120,9 @@ app.put('/me/password', function(req, res, next) {
 // --- Admin routes: session role=admin check + JWT forwarded to soqoniauth ---
 
 app.get('/admin/users', requireAdmin, function(req, res, next) {
+    console.log('ADMIN_USERS: calling auth, token_present=' + !!req.session.token + ' token_prefix=' + (req.session.token || '').substring(0, 20));
     request.get({ url: AUTH_URL + '/admin/users', json: true, headers: adminAuthHeader(req) }, function(err, authRes, body) {
+        console.log('ADMIN_USERS: auth responded, err=' + err + ' status=' + (authRes && authRes.statusCode));
         if (err) return next(err);
         if (authRes.statusCode !== 200) {
             return res.status(authRes.statusCode).json({
