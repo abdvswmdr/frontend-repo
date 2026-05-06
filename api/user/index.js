@@ -16,7 +16,6 @@ const authLimiter = rateLimit({
 });
 
 function requireAdmin(req, res, next) {
-    console.log('requireAdmin:', req.path, 'customerId:', req.session && req.session.customerId, 'role:', req.session && req.session.role);
     if (!req.session || !req.session.customerId) {
         return res.status(401).json({ error: 'not logged in' });
     }
