@@ -1,35 +1,28 @@
-$(document).ready(function () {
-    $.ajaxSetup({ contentType: 'application/json; charset=utf-8' });
-    $('#topbar').load('topbar.html');
-    $('#navbar').load('navbar.html');
-    $('#footer').load('footer.html');
+$.ajaxSetup({ contentType: 'application/json; charset=utf-8' });
+$('#topbar').load('topbar.html');
+$('#navbar').load('navbar.html');
+$('#footer').load('footer.html');
 
-    // Redirect non-admins immediately — /me check is the authoritative gate
-    $('#loading-status').text('/me sent...');
-    $.getJSON('/me', function (data) {
-        var loggedIn = data && data.loggedIn;
-        var role = data && data.user && data.user.role;
-        $('#loading-status').text('/me: loggedIn=' + loggedIn + ' role=' + role);
-        if (!data.loggedIn) {
-            window.location.href = 'index.html';
-            return;
-        }
-        if (data.user.role !== 'admin') {
-            window.location.href = 'index.html';
-            return;
-        }
-        $('#loading-status').text('role=admin, calling loadUsers...');
-        loadUsers();
-    }).fail(function () {
+// Redirect non-admins immediately — /me check is the authoritative gate
+$.getJSON('/me', function (data) {
+    if (!data.loggedIn) {
         window.location.href = 'index.html';
-    });
+        return;
+    }
+    if (data.user.role !== 'admin') {
+        window.location.href = 'index.html';
+        return;
+    }
+    loadUsers();
+}).fail(function () {
+    window.location.href = 'index.html';
+});
 
-    $('#user-search').on('input', function () {
-        var q = $(this).val().toLowerCase();
-        $('#users-tbody tr').each(function () {
-            var text = $(this).text().toLowerCase();
-            $(this).toggle(text.indexOf(q) > -1);
-        });
+$('#user-search').on('input', function () {
+    var q = $(this).val().toLowerCase();
+    $('#users-tbody tr').each(function () {
+        var text = $(this).text().toLowerCase();
+        $(this).toggle(text.indexOf(q) > -1);
     });
 });
 
