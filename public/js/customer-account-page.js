@@ -154,10 +154,8 @@ function savePassword() {
     return false;
 }
 
-$(document).ready(function() {
-    $.ajaxSetup({ contentType: 'application/json; charset=utf-8' });
-    $('#topbar').load('topbar.html');
-    $('#navbar').load('navbar.html');
-    $('#footer').load('footer.html');
-    loadProfile();
-});
+$.ajaxSetup({ contentType: 'application/json; charset=utf-8' });
+$('#topbar').load('topbar.html');
+$('#navbar').load('navbar.html');
+$('#footer').load('footer.html');
+loadProfile();

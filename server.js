@@ -51,12 +51,6 @@ else {
     app.use(session(config.session));
 }
 
-app.use(function(req, res, next) {
-    if (req.path.startsWith('/me') || req.path.startsWith('/admin') || req.path.startsWith('/login')) {
-        console.log('INCOMING ' + req.method + ' ' + req.path);
-    }
-    next();
-});
 app.use(bodyParser.json({ limit: '10kb' }));
 app.use(cookieParser());
 app.use(helpers.sessionMiddleware);

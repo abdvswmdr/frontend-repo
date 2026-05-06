@@ -16,16 +16,12 @@ const authLimiter = rateLimit({
 });
 
 function requireAdmin(req, res, next) {
-    console.log('REQUIRE_ADMIN_START: path=' + req.path + ' customerId=' + (req.session && req.session.customerId) + ' role=' + (req.session && req.session.role));
     if (!req.session || !req.session.customerId) {
-        console.log('REQUIRE_ADMIN_FAIL: no session or customerId');
         return res.status(401).json({ error: 'not logged in' });
     }
     if (req.session.role !== 'admin') {
-        console.log('REQUIRE_ADMIN_FAIL: role is ' + req.session.role);
         return res.status(403).json({ error: 'forbidden: admin access required' });
     }
-    console.log('REQUIRE_ADMIN_SUCCESS: proceeding to next');
     next();
 }
 
@@ -88,9 +84,7 @@ app.get('/me', function(req, res, next) {
             console.warn('Auth service profile fetch failed for user', userId, 'status:', authRes.statusCode);
             return res.status(401).json({ loggedIn: false });
         }
-        console.log('DEBUG: /me profile for user', userId, ':', JSON.stringify(body));
         if (!body || typeof body !== 'object' || !body.id) {
-            console.error('Auth service returned invalid profile body:', body);
             return res.status(500).json({ error: 'invalid profile data' });
         }
         req.session.role = body.role || 'user';
@@ -123,9 +117,7 @@ app.put('/me/password', function(req, res, next) {
 // --- Admin routes: session role=admin check + JWT forwarded to soqoniauth ---
 
 app.get('/admin/users', requireAdmin, function(req, res, next) {
-    console.log('ADMIN_USERS: calling auth, token_present=' + !!req.session.token + ' token_prefix=' + (req.session.token || '').substring(0, 20));
     request.get({ url: AUTH_URL + '/admin/users', json: true, headers: adminAuthHeader(req) }, function(err, authRes, body) {
-        console.log('ADMIN_USERS: auth responded, err=' + err + ' status=' + (authRes && authRes.statusCode));
         if (err) return next(err);
         if (authRes.statusCode !== 200) {
             return res.status(authRes.statusCode).json({
