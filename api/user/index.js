@@ -119,12 +119,7 @@ app.put('/me/password', function(req, res, next) {
 // --- Admin routes: session role=admin check + JWT forwarded to soqoniauth ---
 
 app.get('/admin/users', requireAdmin, function(req, res, next) {
-    const token = req.session.token || '';
-    console.log('DEBUG: /admin/users called, session role:', req.session.role, 'token present:', !!token, 'token length:', token.length);
-    const authUrl = AUTH_URL + '/admin/users';
-    console.log('DEBUG: calling auth', authUrl);
-    request.get({ url: authUrl, json: true, headers: adminAuthHeader(req) }, function(err, authRes, body) {
-        console.log('DEBUG: auth /admin/users response:', err ? 'ERR:' + err.message : authRes.statusCode);
+    request.get({ url: AUTH_URL + '/admin/users', json: true, headers: adminAuthHeader(req) }, function(err, authRes, body) {
         if (err) return next(err);
         if (authRes.statusCode !== 200) {
             return res.status(authRes.statusCode).json({
