@@ -83,6 +83,7 @@ app.get('/me', function(req, res, next) {
             console.warn('Auth service profile fetch failed for user', userId, 'status:', authRes.statusCode);
             return res.status(401).json({ loggedIn: false });
         }
+        console.log('DEBUG: /me profile for user', userId, ':', JSON.stringify(body));
         if (!body || typeof body !== 'object' || !body.id) {
             console.error('Auth service returned invalid profile body:', body);
             return res.status(500).json({ error: 'invalid profile data' });
