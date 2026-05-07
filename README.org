@@ -3,8 +3,8 @@
 * Soqoni — Infrastructure
 
 Infrastructure-as-Code for the Soqoni microservices ecosystem. Features automated CI/CD via Jenkins,
-Ansible-based configuration management, a hardened Kubernetes deployment with Istio service
-mesh and monitoring.
+Ansible-based configuration management, containerized frontend delivery, and a hardened Kubernetes
+deployment with Istio service mesh and monitoring.
 
 #+attr_html: :width 900px :align center :alt "Soqoni infrastructure overview"
 [[file:docs/infra-overview.png]]
@@ -28,6 +28,30 @@ mesh and monitoring.
 - Prometheus + Grafana monitoring via ~kube-prometheus-stack~
 - Kiali topology graph and Jaeger distributed tracing
 
+** Security and Access Control
+
+- Session-based frontend access with JWT-backed auth proxying to the auth service
+- Admin routes enforce role checks before exposing user-management actions
+- Rate limiting on login and registration endpoints
+- Helmet-enabled HTTP hardening and proxy-aware session handling
+- Cache-control and session cleanup on profile and logout flows
+
+** Docker and Runtime Practices
+
+- Multi-stage Docker builds with ~npm ci~ for repeatable installs
+- Minimal Node.js 20 Alpine runtime image
+- Container runs as the non-root ~node~ user
+- Port 8079 is explicitly exposed for the frontend service
+- Build artifacts are kept small and production-focused
+
+** Best Practices
+
+- Keep infrastructure idempotent and environment-specific through Ansible variables
+- Prefer small, composable services with explicit API boundaries
+- Use rolling updates and health-aware deployments for safer releases
+- Keep monitoring and tracing enabled for operational visibility
+- Treat authentication, authorization, and session state as first-class concerns
+
 ** Architecture
 
 #+attr_html: :width 1200px :align center :alt "Soqoni architecture diagram"
@@ -39,7 +63,7 @@ mesh and monitoring.
 |--------------------------+-------------------------------------------------------------|
 | CI/CD                    | Jenkins 2.556 (JDK 21), Docker-in-Docker                    |
 | Configuration management | Ansible 2.x                                                 |
-| Container runtime (dev)  | Docker Compose, custom bridge ~192.168.61.0/24~               |
+| Container runtime (dev)  | Docker Compose, custom bridge ~192.168.61.0/24~            |
 | Container runtime (prod) | Kubernetes (Minikube / k3s)                                 |
 | Service mesh             | Istio 1.29 (sidecar injection, Kiali, Jaeger)               |
 | Monitoring               | kube-prometheus-stack (Prometheus + Grafana + AlertManager) |
